@@ -28,9 +28,9 @@ public class ApplicationDbContext : IdentityDbContext<IdentityUser> {
 
         // Configure one - to - many relationship between Player and Results
         modelBuilder.Entity<Results>()
-      .HasOne(r => r.Player)           // Results has one Player
-      .WithMany(p => p.Results)        // Player has many Results
-      .HasForeignKey(r => r.PlayerId)  // Foreign key is PlayerId in Results
+      .HasOne(r => r.Player)
+      .WithMany(p => p.Results)
+      .HasForeignKey(r => r.PlayerId)
       .OnDelete(DeleteBehavior.Cascade); // Cascade delete to automatically delete Results when Player is deleted
 
         // Configure primary key for IdentityUserLogin<string> entity
