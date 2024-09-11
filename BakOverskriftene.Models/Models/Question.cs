@@ -1,4 +1,4 @@
-﻿namespace BakOverskriftene.Models.Models {
+﻿namespace BakOverskriftene.Domain.Models {
 
     public class Question {
 
@@ -8,7 +8,7 @@
 
         //Navigation Properties
 
-        public Module Module { get; set; }
+        public Section Module { get; set; }
         public List<Answer> Answers { get; set; } = new List<Answer>();
     }
 }

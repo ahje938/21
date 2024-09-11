@@ -1,8 +1,6 @@
-﻿using BakOverskriftene.Domain.Models;
+﻿namespace BakOverskriftene.Domain.Models {
 
-namespace BakOverskriftene.Models.Models {
-
-    public class Module {
+    public class Section {
 
         public int Id { get; set; } //PK
         public string Name { get; set; }

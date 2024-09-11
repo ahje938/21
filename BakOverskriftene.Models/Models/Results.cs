@@ -1,6 +1,4 @@
-﻿using BakOverskriftene.Models.Models;
-
-namespace BakOverskriftene.Domain.Models {
+﻿namespace BakOverskriftene.Domain.Models {
 
     public class Results {
 
@@ -11,7 +9,7 @@ namespace BakOverskriftene.Domain.Models {
 
         //Navigation Properties
 
-        public Module Module { get; set; }
+        public Section Module { get; set; }
         public Player Player { get; set; }
     }
 }

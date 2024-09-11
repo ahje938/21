@@ -1,4 +1,4 @@
-﻿namespace BakOverskriftene.Models.Models {
+﻿namespace BakOverskriftene.Domain.Models {
 
     public class Answer {
 
