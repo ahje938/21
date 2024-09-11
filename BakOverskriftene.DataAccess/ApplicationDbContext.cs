@@ -26,6 +26,13 @@ public class ApplicationDbContext : IdentityDbContext<IdentityUser> {
     protected override void OnModelCreating(ModelBuilder modelBuilder) {
         base.OnModelCreating(modelBuilder); // Call the base method to configure ASP.NET Core Identity entities
 
+        // Configure one - to - many relationship between Player and Results
+        modelBuilder.Entity<Results>()
+      .HasOne(r => r.Player)           // Results has one Player
+      .WithMany(p => p.Results)        // Player has many Results
+      .HasForeignKey(r => r.PlayerId)  // Foreign key is PlayerId in Results
+      .OnDelete(DeleteBehavior.Cascade); // Cascade delete to automatically delete Results when Player is deleted
+
         // Configure primary key for IdentityUserLogin<string> entity
         modelBuilder.Entity<IdentityUserLogin<string>>(entity => {
             entity.HasKey(e => new { e.LoginProvider, e.ProviderKey });

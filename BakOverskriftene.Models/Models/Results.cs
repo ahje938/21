@@ -5,7 +5,7 @@
         public int Id { get; set; } //PK
         public int Score { get; set; }
         public int ModuleId { get; set; } //FK
-        public int PlayerId { get; set; } //FK
+        public string PlayerId { get; set; } //FK
 
         //Navigation Properties
 
