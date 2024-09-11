@@ -3,18 +3,18 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35222.181
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HK-BakOverskriftene", "HK-BakOverskriftene\HK-BakOverskriftene.csproj", "{34828DA3-6EE4-4253-96A2-D639419D1EE3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HK-BakOverskriftene", "HK-BakOverskriftene\HK-BakOverskriftene.csproj", "{34828DA3-6EE4-4253-96A2-D639419D1EE3}"
 	ProjectSection(ProjectDependencies) = postProject
 		{60CD931E-C538-4CE3-AFAD-01968D95673F} = {60CD931E-C538-4CE3-AFAD-01968D95673F}
 		{8F285BE9-2827-4DD8-9552-C6B9AA74A49C} = {8F285BE9-2827-4DD8-9552-C6B9AA74A49C}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BakOverskriftene.DataAccess", "BakOverskriftene.DataAccess\BakOverskriftene.DataAccess.csproj", "{60CD931E-C538-4CE3-AFAD-01968D95673F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BakOverskriftene.DataAccess", "BakOverskriftene.DataAccess\BakOverskriftene.DataAccess.csproj", "{60CD931E-C538-4CE3-AFAD-01968D95673F}"
 	ProjectSection(ProjectDependencies) = postProject
 		{8F285BE9-2827-4DD8-9552-C6B9AA74A49C} = {8F285BE9-2827-4DD8-9552-C6B9AA74A49C}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BakOverskriftene.Models", "BakOverskriftene.Models\BakOverskriftene.Models.csproj", "{8F285BE9-2827-4DD8-9552-C6B9AA74A49C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BakOverskriftene.Domain", "BakOverskriftene.Models\BakOverskriftene.Domain.csproj", "{8F285BE9-2827-4DD8-9552-C6B9AA74A49C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
