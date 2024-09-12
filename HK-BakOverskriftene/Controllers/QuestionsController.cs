@@ -63,7 +63,8 @@ namespace BakOverskriftene.Api.Controllers {
             var questionDTOs = section.Questions
                 .Select(q => new QuestionDisplayDTO {
                     Id = q.Id,
-                    QuestionText = q.QuestionText
+                    QuestionText = q.QuestionText,
+                    SectionId = q.SectionId
                 })
                 .ToList();
 
