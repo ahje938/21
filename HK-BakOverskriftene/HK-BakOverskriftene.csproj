@@ -27,10 +27,6 @@
 	</ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\BakOverskriftene.DataAccess\BakOverskriftene.DataAccess.csproj" />
     <ProjectReference Include="..\BakOverskriftene.Models\BakOverskriftene.Domain.csproj" />
   </ItemGroup>

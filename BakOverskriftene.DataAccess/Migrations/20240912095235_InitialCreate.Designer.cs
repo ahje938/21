@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BakOverskriftene.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240911103241_InitialMigration")]
-    partial class InitialMigration
+    [Migration("20240912095235_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -57,41 +57,35 @@ namespace BakOverskriftene.DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("ModuleId")
-                        .HasColumnType("int");
-
                     b.Property<string>("QuestionText")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("SectionId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("ModuleId");
+                    b.HasIndex("SectionId");
 
                     b.ToTable("Questions");
                 });
 
             modelBuilder.Entity("BakOverskriftene.Domain.Models.Results", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("ModuleId")
+                    b.Property<int>("SectionId")
                         .HasColumnType("int");
 
                     b.Property<string>("PlayerId")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
 
                     b.Property<int>("Score")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
-
-                    b.HasIndex("ModuleId");
+                    b.HasKey("SectionId", "PlayerId");
 
                     b.HasIndex("PlayerId");
 
@@ -350,32 +344,32 @@ namespace BakOverskriftene.DataAccess.Migrations
 
             modelBuilder.Entity("BakOverskriftene.Domain.Models.Question", b =>
                 {
-                    b.HasOne("BakOverskriftene.Domain.Models.Section", "Module")
+                    b.HasOne("BakOverskriftene.Domain.Models.Section", "Section")
                         .WithMany("Questions")
-                        .HasForeignKey("ModuleId")
+                        .HasForeignKey("SectionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Module");
+                    b.Navigation("Section");
                 });
 
             modelBuilder.Entity("BakOverskriftene.Domain.Models.Results", b =>
                 {
-                    b.HasOne("BakOverskriftene.Domain.Models.Section", "Module")
-                        .WithMany("Results")
-                        .HasForeignKey("ModuleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("BakOverskriftene.Domain.Models.Player", "Player")
                         .WithMany("Results")
                         .HasForeignKey("PlayerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Module");
+                    b.HasOne("BakOverskriftene.Domain.Models.Section", "Section")
+                        .WithMany("Results")
+                        .HasForeignKey("SectionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Player");
+
+                    b.Navigation("Section");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

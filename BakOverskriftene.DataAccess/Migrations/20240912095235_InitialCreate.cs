@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace BakOverskriftene.DataAccess.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialMigration : Migration
+    public partial class InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -179,14 +179,14 @@ namespace BakOverskriftene.DataAccess.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     QuestionText = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ModuleId = table.Column<int>(type: "int", nullable: false)
+                    SectionId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Questions", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Questions_Sections_ModuleId",
-                        column: x => x.ModuleId,
+                        name: "FK_Questions_Sections_SectionId",
+                        column: x => x.SectionId,
                         principalTable: "Sections",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -196,15 +196,14 @@ namespace BakOverskriftene.DataAccess.Migrations
                 name: "Results",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Score = table.Column<int>(type: "int", nullable: false),
-                    ModuleId = table.Column<int>(type: "int", nullable: false),
-                    PlayerId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                    SectionId = table.Column<int>(type: "int", nullable: false),
+                    PlayerId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false),
+                    Score = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Results", x => x.Id);
+                    table.PrimaryKey("PK_Results", x => new { x.SectionId, x.PlayerId });
                     table.ForeignKey(
                         name: "FK_Results_AspNetUsers_PlayerId",
                         column: x => x.PlayerId,
@@ -212,8 +211,8 @@ namespace BakOverskriftene.DataAccess.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Results_Sections_ModuleId",
-                        column: x => x.ModuleId,
+                        name: "FK_Results_Sections_SectionId",
+                        column: x => x.SectionId,
                         principalTable: "Sections",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -285,14 +284,9 @@ namespace BakOverskriftene.DataAccess.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Questions_ModuleId",
+                name: "IX_Questions_SectionId",
                 table: "Questions",
-                column: "ModuleId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Results_ModuleId",
-                table: "Results",
-                column: "ModuleId");
+                column: "SectionId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Results_PlayerId",

@@ -70,27 +70,21 @@ namespace BakOverskriftene.DataAccess.Migrations
 
             modelBuilder.Entity("BakOverskriftene.Domain.Models.Results", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
+                    b.Property<int>("SectionId")
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
                     b.Property<string>("PlayerId")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
 
                     b.Property<int>("Score")
                         .HasColumnType("int");
 
-                    b.Property<int>("SectionId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
+                    b.HasKey("SectionId", "PlayerId");
 
                     b.HasIndex("PlayerId");
-
-                    b.HasIndex("SectionId");
 
                     b.ToTable("Results");
                 });
