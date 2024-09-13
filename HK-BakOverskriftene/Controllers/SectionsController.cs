@@ -42,6 +42,17 @@ namespace BakOverskriftene.Api.Controllers {
             return Ok(section);
         }
 
-        // Add additional endpoints as needed
+        [HttpGet]
+        public async Task<IActionResult> GetAllSections() {
+            var sections = await _context.Sections
+                .Select(s => new SectionListDTO {
+                    Id = s.Id,
+                    SectionName = s.Name
+                })
+                .ToListAsync();
+
+            return Ok(sections);
+        }
+
     }
 }

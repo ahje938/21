@@ -5,14 +5,23 @@ import AddSection from "./components/AddSection";
 import AddQuestions from "./components/AddQuestions";
 import NavBar from "./components/NavBar";
 import "./css/NavBar.css";
+import SectionList from "./components/SectionList";
 
 const App = () => {
   return (
     <Router>
       <div>
-        <NavBar /> 
+        <NavBar />
         <Routes>
-          <Route path="/" element={<AddSection />} />
+          <Route
+            path="/"
+            element={
+              <div>
+                <AddSection />
+                <SectionList />
+              </div>
+            }
+          />
           <Route path="/section/:sectionId/questions" element={<AddQuestions />} />
         </Routes>
       </div>
