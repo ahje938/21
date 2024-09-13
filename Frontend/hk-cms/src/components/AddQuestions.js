@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import QuestionList from "./QuestionList";
@@ -9,18 +9,19 @@ const AddQuestions = () => {
   const [showQuestionList, setShowQuestionList] = useState(false); // Toggle for question list visibility
   const [questions, setQuestions] = useState([]); // Store the list of questions
 
-  const fetchQuestions = async () => {
+  // Use useCallback to memoize the fetchQuestions function
+  const fetchQuestions = useCallback(async () => {
     try {
       const response = await axios.get(`https://localhost:7263/api/questions/section/${sectionId}`);
       setQuestions(response.data); // Set the fetched questions
     } catch (error) {
       console.error("Error fetching questions:", error);
     }
-  };
+  }, [sectionId]); // Recreate the function only when sectionId changes
 
   useEffect(() => {
     fetchQuestions(); // Fetch questions when the sectionId changes
-  }, [sectionId]);
+  }, [fetchQuestions]); // Now fetchQuestions is a stable dependency
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -43,7 +44,7 @@ const AddQuestions = () => {
 
       alert("Question added successfully!");
       setQuestionText(""); // Clear input
-      fetchQuestions(); // Refresh the question list
+      fetchQuestions(); // Refresh the question list after adding a new question
     } catch (error) {
       console.error("There was an error adding the question:", error.response ? error.response.data : error.message);
     }
