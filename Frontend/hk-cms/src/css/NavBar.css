@@ -1,0 +1,32 @@
+.navbar {
+    position: sticky;
+    top: 0;
+    left: 0;
+    padding: 10px;
+    background-color: #333;
+    color: white;
+    width: 150px;
+    height: auto;
+    z-index: 1000;
+  }
+  
+  .navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .navbar li {
+    margin: 10px 0;
+  }
+  
+  .navbar a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .navbar a:hover {
+    color: #ddd;
+  }
+  
