@@ -6,6 +6,7 @@ import AddQuestions from "./components/AddQuestions";
 import NavBar from "./components/NavBar";
 import "./css/NavBar.css";
 import SectionList from "./components/SectionList";
+import AddAnswers from "./components/AddAnswer";
 
 const App = () => {
   return (
@@ -23,6 +24,7 @@ const App = () => {
             }
           />
           <Route path="/section/:sectionId/questions" element={<AddQuestions />} />
+          <Route path="/question/:questionId/answers" element={<AddAnswers />} />
         </Routes>
       </div>
     </Router>

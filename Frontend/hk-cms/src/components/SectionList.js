@@ -34,7 +34,7 @@ const SectionList = () => {
 
     return (
         <div>
-            <h2>Sections</h2>
+            <h2>Section</h2>
             <ul>
                 {sections.map((section) => (
                     <li key={section.id}>
