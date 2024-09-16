@@ -45,7 +45,6 @@ const AddAnswers = () => {
           });
           
 
-      alert("Answer added successfully!");
       setAnswerText(""); // Clear input
       setIsCorrect(false); // Reset checkbox
       fetchAnswers(); // Refresh the answer list after adding a new answer

@@ -42,7 +42,6 @@ const AddQuestions = () => {
         SectionId: parseInt(sectionId)
       });
 
-      alert("Question added successfully!"); //TODO: Remove this later
       setQuestionText(""); // Clear input
       fetchQuestions(); // Refresh the question list after adding a new question
     } catch (error) {

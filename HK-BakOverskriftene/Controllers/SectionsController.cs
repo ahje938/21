@@ -54,5 +54,18 @@ namespace BakOverskriftene.Api.Controllers {
             return Ok(sections);
         }
 
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteSection(int id) {
+            var section = await _context.Sections.FindAsync(id);
+
+            if (section == null) {
+                return NotFound();
+            }
+
+            _context.Sections.Remove(section);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
     }
 }
