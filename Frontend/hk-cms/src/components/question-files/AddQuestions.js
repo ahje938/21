@@ -73,7 +73,7 @@ const AddQuestions = () => {
       </button>
 
       {/* Conditionally render the question list */}
-      {showQuestionList && <QuestionList questions={questions} />}
+      {showQuestionList && <QuestionList questions={questions} fetchQuestions={fetchQuestions} />}
     </div>
   );
 };

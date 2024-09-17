@@ -73,5 +73,47 @@ namespace BakOverskriftene.Api.Controllers {
 
             return Ok(answers);
         }
+        // PUT: api/answers/{id}
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateAnswer(int id, [FromBody] AnswerDTO answerDto) {
+            if (answerDto == null || string.IsNullOrEmpty(answerDto.AnswerText)) {
+                return BadRequest("Invalid answer data.");
+            }
+
+            var answer = await _context.Answers.FindAsync(id);
+            if (answer == null) {
+                return NotFound("Answer not found.");
+            }
+
+            answer.AnswerText = answerDto.AnswerText;
+            answer.Correct = answerDto.Correct;
+
+            try {
+                await _context.SaveChangesAsync();
+                return Ok(answer);
+            }
+            catch (Exception ex) {
+                return StatusCode(500, "Internal server error");
+            }
+        }
+
+        // DELETE: api/answers/{id}
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteAnswer(int id) {
+            var answer = await _context.Answers.FindAsync(id);
+            if (answer == null) {
+                return NotFound("Answer not found.");
+            }
+
+            _context.Answers.Remove(answer);
+
+            try {
+                await _context.SaveChangesAsync();
+                return NoContent();
+            }
+            catch (Exception ex) {
+                return StatusCode(500, "Internal server error");
+            }
+        }
     }
 }

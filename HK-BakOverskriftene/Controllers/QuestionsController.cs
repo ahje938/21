@@ -16,7 +16,7 @@ namespace BakOverskriftene.Api.Controllers {
 
         // POST: api/Questions/{sectionId}
         [HttpPost("{sectionId}")]
-        public async Task<IActionResult> AddQuestion(int sectionId, [FromBody] QuestionCreateDTO questionDTO) {
+        public async Task<IActionResult> AddQuestion(int sectionId, [FromBody] QuestionDTO questionDTO) {
             if (questionDTO == null || string.IsNullOrEmpty(questionDTO.QuestionText)) {
                 return BadRequest("Invalid question data.");
             }
@@ -80,6 +80,47 @@ namespace BakOverskriftene.Api.Controllers {
             }
 
             return Ok(question);
+        }
+        // PUT: api/Questions/{id}
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateQuestion(int id, [FromBody] QuestionDTO questionDTO) {
+            if (questionDTO == null || string.IsNullOrEmpty(questionDTO.QuestionText)) {
+                return BadRequest("Invalid question data.");
+            }
+
+            var question = await _context.Questions.FindAsync(id);
+            if (question == null) {
+                return NotFound("Question not found.");
+            }
+
+            question.QuestionText = questionDTO.QuestionText;
+
+            try {
+                await _context.SaveChangesAsync();
+                return Ok(question);
+            }
+            catch (Exception ex) {
+                return StatusCode(500, "Internal server error");
+            }
+        }
+
+        // DELETE: api/Questions/{id}
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteQuestion(int id) {
+            var question = await _context.Questions.FindAsync(id);
+            if (question == null) {
+                return NotFound("Question not found.");
+            }
+
+            _context.Questions.Remove(question);
+
+            try {
+                await _context.SaveChangesAsync();
+                return NoContent();
+            }
+            catch (Exception ex) {
+                return StatusCode(500, "Internal server error");
+            }
         }
     }
 }

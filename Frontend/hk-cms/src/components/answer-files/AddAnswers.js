@@ -87,7 +87,7 @@ const AddAnswers = () => {
       </button>
 
       {/* Conditionally render the answer list */}
-      {showAnswerList && <AnswerList answers={answers} />}
+      {showAnswerList && <AnswerList answers={answers} fetchAnswers={fetchAnswers} />}
     </div>
   );
 };
