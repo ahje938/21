@@ -67,5 +67,23 @@ namespace BakOverskriftene.Api.Controllers {
 
             return NoContent();
         }
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateSection(int id, [FromBody] Section updatedSection) {
+            if (updatedSection == null || string.IsNullOrEmpty(updatedSection.Name)) {
+                return BadRequest("Invalid section data.");
+            }
+
+            var section = await _context.Sections.FindAsync(id);
+            if (section == null) {
+                return NotFound();
+            }
+
+            section.Name = updatedSection.Name;
+            await _context.SaveChangesAsync();
+
+            return Ok(section);
+        }
+
+
     }
 }
