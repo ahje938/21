@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import QuestionList from "./QuestionList";
+import "../../css/AddQuestions.css";
 
 const AddQuestions = () => {
   const [questionText, setQuestionText] = useState("");
@@ -49,26 +50,25 @@ const AddQuestions = () => {
   };
 
   return (
-    <div>
-      <h2>Manage Questions for Section {sectionId}</h2>
+    <div className="add-question-container">
+    <h2>Manage Questions for Section {sectionId}</h2>
 
-      {/* Form to add a new question */}
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Question Text:</label>
-          <input
-            type="text"
-            value={questionText}
-            onChange={(e) => setQuestionText(e.target.value)}
-            placeholder="Enter question text"
-          />
-        </div>
-        <button type="submit">Add Question</button>
-      </form>
+    <form onSubmit={handleSubmit} className="question-form">
+      <div className="form-group">
+        <label>Question Text:</label>
+        <input
+          type="text"
+          value={questionText}
+          onChange={(e) => setQuestionText(e.target.value)}
+          placeholder="Enter question text"
+          className="input-text"
+        />
+      </div>
+      <button type="submit" className="submit-btn">Add Question</button>
+    </form>
 
-      {/* Always display the question list */}
-      <QuestionList questions={questions} fetchQuestions={fetchQuestions} />
-    </div>
+    <QuestionList questions={questions} fetchQuestions={fetchQuestions} />
+  </div>
   );
 };
 

@@ -2,6 +2,8 @@ import React, { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import AnswerList from "./AnswerList";
+import "../../css/AddAnswers.css"
+
 
 const AddAnswers = () => {
   const [answerText, setAnswerText] = useState("");
@@ -52,21 +54,21 @@ const AddAnswers = () => {
   };
 
   return (
-    <div>
+    <div className="add-answer-container">
       <h2>Manage Answers for Question {questionId}</h2>
 
-      {/* Form to add a new answer */}
-      <form onSubmit={handleSubmit}>
-        <div>
+      <form onSubmit={handleSubmit} className="answer-form">
+        <div className="form-group">
           <label>Answer Text:</label>
           <input
             type="text"
             value={answerText}
             onChange={(e) => setAnswerText(e.target.value)}
             placeholder="Enter answer text"
+            className="input-text"
           />
         </div>
-        <div>
+        <div className="form-group">
           <label>
             <input
               type="checkbox"
@@ -76,10 +78,9 @@ const AddAnswers = () => {
             Is Correct
           </label>
         </div>
-        <button type="submit">Add Answer</button>
+        <button type="submit" className="submit-btn">Add Answer</button>
       </form>
 
-      {/* Always display the answer list */}
       <AnswerList answers={answers} fetchAnswers={fetchAnswers} />
     </div>
   );

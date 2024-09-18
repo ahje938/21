@@ -1,22 +1,21 @@
 import React, { useState } from "react";
 import axios from "axios";
+import "../../css/AnswerList.css";
 
 const AnswerList = ({ answers, fetchAnswers }) => {
   const [editingAnswer, setEditingAnswer] = useState(null);
   const [newAnswerText, setNewAnswerText] = useState("");
   const [isCorrect, setIsCorrect] = useState(false);
 
-  // Handle delete
   const handleDelete = async (id) => {
     try {
       await axios.delete(`https://localhost:7263/api/answers/${id}`);
-      fetchAnswers(); // Refresh the answer list
+      fetchAnswers();
     } catch (error) {
       console.error("Error deleting answer:", error);
     }
   };
 
-  // Handle edit
   const handleEdit = (answer) => {
     setEditingAnswer(answer.id);
     setNewAnswerText(answer.answerText);
@@ -28,16 +27,15 @@ const AnswerList = ({ answers, fetchAnswers }) => {
       await axios.put(`https://localhost:7263/api/answers/${id}`, {
         AnswerText: newAnswerText,
         Correct: isCorrect,
-        QuestionId: answers[0].questionId, // Assuming all answers belong to the same question
+        QuestionId: answers[0].questionId,
       });
-      setEditingAnswer(null); // Exit edit mode
-      fetchAnswers(); // Refresh the list
+      setEditingAnswer(null);
+      fetchAnswers();
     } catch (error) {
       console.error("Error updating answer:", error);
     }
   };
 
-  // If answers are inside the $values property, extract them
   const answerArray = answers.$values || answers;
 
   if (!Array.isArray(answerArray) || answerArray.length === 0) {
@@ -45,31 +43,33 @@ const AnswerList = ({ answers, fetchAnswers }) => {
   }
 
   return (
-    <div>
+    <div className="answer-list-container">
       <h3>Answers</h3>
-      <ul>
+      <ul className="answer-list">
         {answerArray.map((answer) => (
-          <li key={answer.id}>
+          <li key={answer.id} className="answer-item">
             {editingAnswer === answer.id ? (
               <>
                 <input
                   type="text"
                   value={newAnswerText}
                   onChange={(e) => setNewAnswerText(e.target.value)}
+                  className="input-edit"
                 />
                 <input
                   type="checkbox"
                   checked={isCorrect}
                   onChange={(e) => setIsCorrect(e.target.checked)}
+                  className="input-checkbox"
                 />
-                <button onClick={() => handleUpdate(answer.id)}>Save</button>
-                <button onClick={() => setEditingAnswer(null)}>Cancel</button>
+                <button onClick={() => handleUpdate(answer.id)} className="btn-save">Save</button>
+                <button onClick={() => setEditingAnswer(null)} className="btn-cancel">Cancel</button>
               </>
             ) : (
               <>
                 {answer.answerText} - {answer.correct ? "Correct" : "Incorrect"}
-                <button onClick={() => handleEdit(answer)}>Edit</button>
-                <button onClick={() => handleDelete(answer.id)}>Delete</button>
+                <button onClick={() => handleEdit(answer)} className="btn-edit">Edit</button>
+                <button onClick={() => handleDelete(answer.id)} className="btn-delete">Delete</button>
               </>
             )}
           </li>

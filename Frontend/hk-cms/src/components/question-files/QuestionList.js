@@ -1,25 +1,23 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import "../../css/QuestionList.css";
 
 const QuestionList = ({ questions, fetchQuestions }) => {
   const [editingQuestion, setEditingQuestion] = useState(null);
   const [newQuestionText, setNewQuestionText] = useState("");
 
-  // Extract questions from $values if it exists
   const questionArray = questions.$values || questions;
 
-  // Handle delete
   const handleDelete = async (id) => {
     try {
       await axios.delete(`https://localhost:7263/api/questions/${id}`);
-      fetchQuestions(); // Refresh the list
+      fetchQuestions();
     } catch (error) {
       console.error("Error deleting question:", error);
     }
   };
 
-  // Handle edit
   const handleEdit = (question) => {
     setEditingQuestion(question.id);
     setNewQuestionText(question.questionText);
@@ -29,10 +27,10 @@ const QuestionList = ({ questions, fetchQuestions }) => {
     try {
       await axios.put(`https://localhost:7263/api/questions/${id}`, {
         QuestionText: newQuestionText,
-        SectionId: questionArray[0].sectionId, // Assuming all questions belong to the same section
+        SectionId: questionArray[0].sectionId,
       });
-      setEditingQuestion(null); // Exit edit mode
-      fetchQuestions(); // Refresh the list
+      setEditingQuestion(null);
+      fetchQuestions();
     } catch (error) {
       console.error("Error updating question:", error);
     }
@@ -43,31 +41,33 @@ const QuestionList = ({ questions, fetchQuestions }) => {
   }
 
   return (
-    <div>
+    <div className="question-list-container">
       <h3>Questions</h3>
-      <ul>
+      <ul className="question-list">
         {questionArray.map((question) => (
-          <li key={question.id}>
+          <li key={question.id} className="question-item">
             {editingQuestion === question.id ? (
               <>
                 <input
                   type="text"
                   value={newQuestionText}
                   onChange={(e) => setNewQuestionText(e.target.value)}
+                  className="input-edit"
                 />
-                <button onClick={() => handleUpdate(question.id)}>Save</button>
-                <button onClick={() => setEditingQuestion(null)}>Cancel</button>
+                <button onClick={() => handleUpdate(question.id)} className="btn-save">Save</button>
+                <button onClick={() => setEditingQuestion(null)} className="btn-cancel">Cancel</button>
               </>
             ) : (
               <>
                 <Link
                   to={`/question/${question.id}/answers`}
-                  state={{ fromSectionId: question.sectionId }} // Pass sectionId to state
+                  state={{ fromSectionId: question.sectionId }}
+                  className="question-link"
                 >
                   {question.questionText}
                 </Link>
-                <button onClick={() => handleEdit(question)}>Edit</button>
-                <button onClick={() => handleDelete(question.id)}>Delete</button>
+                <button onClick={() => handleEdit(question)} className="btn-edit">Edit</button>
+                <button onClick={() => handleDelete(question.id)} className="btn-delete">Delete</button>
               </>
             )}
           </li>

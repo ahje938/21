@@ -1,0 +1,48 @@
+/* General styling for forms */
+.section-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.add-section-container {
+    margin-bottom: 20px;
+}
+
+.section-form input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+}
+
+.section-form button {
+    padding: 10px 15px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.section-list ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.section-list li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.section-list li button {
+    margin-left: 10px;
+}
+
+.error-message {
+    color: red;
+    margin-top: 5px;
+}
