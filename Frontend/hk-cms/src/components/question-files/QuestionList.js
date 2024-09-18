@@ -36,6 +36,12 @@ const QuestionList = ({ questions, fetchQuestions }) => {
     }
   };
 
+  const handleKeyDown = (e, id) => {
+    if (e.key === "Enter") {
+      handleUpdate(id);
+    }
+  };
+
   if (!Array.isArray(questionArray) || questionArray.length === 0) {
     return <p>No questions available.</p>;
   }
@@ -53,6 +59,7 @@ const QuestionList = ({ questions, fetchQuestions }) => {
                   value={newQuestionText}
                   onChange={(e) => setNewQuestionText(e.target.value)}
                   className="input-edit"
+                  onKeyDown={(e) => handleKeyDown(e, question.id)}
                 />
                 <button onClick={() => handleUpdate(question.id)} className="btn-save">Save</button>
                 <button onClick={() => setEditingQuestion(null)} className="btn-cancel">Cancel</button>

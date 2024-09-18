@@ -36,6 +36,12 @@ const AnswerList = ({ answers, fetchAnswers }) => {
     }
   };
 
+  const handleKeyDown = (e, id) => {
+    if (e.key === "Enter") {
+      handleUpdate(id);
+    }
+  };
+
   const answerArray = answers.$values || answers;
 
   if (!Array.isArray(answerArray) || answerArray.length === 0) {
@@ -55,6 +61,7 @@ const AnswerList = ({ answers, fetchAnswers }) => {
                   value={newAnswerText}
                   onChange={(e) => setNewAnswerText(e.target.value)}
                   className="input-edit"
+                  onKeyDown={(e) => handleKeyDown(e, answer.id)}
                 />
                 <input
                   type="checkbox"
