@@ -6,10 +6,9 @@ import QuestionList from "./QuestionList";
 const AddQuestions = () => {
   const [questionText, setQuestionText] = useState("");
   const { sectionId } = useParams(); // Get sectionId from the URL
-  const [showQuestionList, setShowQuestionList] = useState(false); // Toggle for question list visibility
   const [questions, setQuestions] = useState([]); // Store the list of questions
 
-  // Use useCallback to memoize the fetchQuestions function
+  // Fetch questions
   const fetchQuestions = useCallback(async () => {
     try {
       const response = await axios.get(`https://localhost:7263/api/questions/section/${sectionId}`);
@@ -67,13 +66,8 @@ const AddQuestions = () => {
         <button type="submit">Add Question</button>
       </form>
 
-      {/* Button to toggle question list visibility */}
-      <button onClick={() => setShowQuestionList(!showQuestionList)}>
-        {showQuestionList ? "Hide Questions" : "Show Questions"}
-      </button>
-
-      {/* Conditionally render the question list */}
-      {showQuestionList && <QuestionList questions={questions} fetchQuestions={fetchQuestions} />}
+      {/* Always display the question list */}
+      <QuestionList questions={questions} fetchQuestions={fetchQuestions} />
     </div>
   );
 };

@@ -1,18 +1,15 @@
 import React, { useState, useEffect, useCallback } from "react";
 import axios from "axios";
-import { useParams, useLocation, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import AnswerList from "./AnswerList";
 
 const AddAnswers = () => {
   const [answerText, setAnswerText] = useState("");
   const [isCorrect, setIsCorrect] = useState(false);
   const { questionId } = useParams(); // Get questionId from the URL
-  const [showAnswerList, setShowAnswerList] = useState(false); // Toggle for answer list visibility
   const [answers, setAnswers] = useState([]); // Store the list of answers
-  const location = useLocation();
-  const navigate = useNavigate();
 
-  // Use useCallback to memoize the fetchAnswers function
+  // Fetch answers
   const fetchAnswers = useCallback(async () => {
     try {
       const response = await axios.get(`https://localhost:7263/api/answers/question/${questionId}`);
@@ -40,27 +37,17 @@ const AddAnswers = () => {
     }
 
     try {
-        await axios.post(`https://localhost:7263/api/answers/${questionId}`, {
-            AnswerText: answerText,
-            Correct: isCorrect,
-            QuestionId: questionId
-          });
-          
+      await axios.post(`https://localhost:7263/api/answers/${questionId}`, {
+        AnswerText: answerText,
+        Correct: isCorrect,
+        QuestionId: questionId
+      });
+
       setAnswerText(""); // Clear input
       setIsCorrect(false); // Reset checkbox
       fetchAnswers(); // Refresh the answer list after adding a new answer
     } catch (error) {
       console.error("There was an error adding the answer:", error.response ? error.response.data : error.message);
-    }
-  };
-
-  // Handle navigation to question list
-  const handleBackToQuestions = () => {
-    const sectionId = location.state?.fromSectionId;
-    if (sectionId) {
-      navigate(`/section/${sectionId}/questions`);
-    } else {
-      navigate('/sections');
     }
   };
 
@@ -92,16 +79,8 @@ const AddAnswers = () => {
         <button type="submit">Add Answer</button>
       </form>
 
-      {/* Button to toggle answer list visibility */}
-      <button onClick={() => setShowAnswerList(!showAnswerList)}>
-        {showAnswerList ? "Hide Answers" : "Show Answers"}
-      </button>
-
-      {/* Button to navigate back to questions */}
-      <button onClick={handleBackToQuestions}>Back to Questions</button>
-
-      {/* Conditionally render the answer list */}
-      {showAnswerList && <AnswerList answers={answers} fetchAnswers={fetchAnswers} />}
+      {/* Always display the answer list */}
+      <AnswerList answers={answers} fetchAnswers={fetchAnswers} />
     </div>
   );
 };
