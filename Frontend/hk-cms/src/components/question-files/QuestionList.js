@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import axios from "axios";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 const QuestionList = ({ questions, fetchQuestions }) => {
   const [editingQuestion, setEditingQuestion] = useState(null);
   const [newQuestionText, setNewQuestionText] = useState("");
 
-  // If questions are inside the $values property, extract them
+  // Extract questions from $values if it exists
   const questionArray = questions.$values || questions;
 
   // Handle delete
@@ -29,7 +29,7 @@ const QuestionList = ({ questions, fetchQuestions }) => {
     try {
       await axios.put(`https://localhost:7263/api/questions/${id}`, {
         QuestionText: newQuestionText,
-        SectionId: questionArray.length > 0 ? questionArray[0].sectionId : null, // Ensure sectionId is available
+        SectionId: questionArray[0].sectionId, // Assuming all questions belong to the same section
       });
       setEditingQuestion(null); // Exit edit mode
       fetchQuestions(); // Refresh the list
@@ -60,7 +60,10 @@ const QuestionList = ({ questions, fetchQuestions }) => {
               </>
             ) : (
               <>
-                <Link to={`/question/${question.id}/answers`}>
+                <Link
+                  to={`/question/${question.id}/answers`}
+                  state={{ fromSectionId: question.sectionId }} // Pass sectionId to state
+                >
                   {question.questionText}
                 </Link>
                 <button onClick={() => handleEdit(question)}>Edit</button>
@@ -75,4 +78,3 @@ const QuestionList = ({ questions, fetchQuestions }) => {
 };
 
 export default QuestionList;
-
