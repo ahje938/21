@@ -12,7 +12,6 @@ const Sections = () => {
 
     return (
         <div className="sections-page">
-            <h1>Manage Sections</h1>
             <AddSection triggerFetch={triggerFetch} />
             <SectionList fetchSections={fetchTrigger} />
         </div>

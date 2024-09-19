@@ -1,48 +1,84 @@
-/* General styling for forms */
-.section-form {
+/* Section.css */
+.add-section-container {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 600px;
+    margin: 20px auto;
+}
+
+.add-section-container h2 {
+    font-size: 1.5em;
+    color: #333;
+}
+
+.add-section-container form {
     display: flex;
     flex-direction: column;
-    gap: 10px;
 }
 
-.add-section-container {
-    margin-bottom: 20px;
+.add-section-container label {
+    margin-top: 10px;
+    font-weight: bold;
 }
 
-.section-form input {
+.add-section-container input {
     padding: 8px;
+    margin-top: 5px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    width: 100%;
 }
 
-.section-form button {
-    padding: 10px 15px;
-    background-color: #4caf50;
+.add-section-container button {
+    margin-top: 15px;
+    padding: 10px;
+    background-color: #37693a;
     color: white;
     border: none;
     border-radius: 4px;
     cursor: pointer;
 }
 
-.section-list ul {
-    list-style-type: none;
-    padding: 0;
+.add-section-container button:hover {
+    background-color: #45a049;
 }
 
-.section-list li {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+/* Section List */
+.section-list-container {
+    margin: 20px auto;
+    max-width: 600px;
+}
+
+.section-list-item {
+    background-color: #fff;
+    border: 1px solid #ddd;
     padding: 10px;
-    border-bottom: 1px solid #ccc;
+    margin-bottom: 10px;
+    border-radius: 4px;
 }
 
-.section-list li button {
+.section-list-item button {
     margin-left: 10px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
 }
 
-.error-message {
-    color: red;
-    margin-top: 5px;
+.section-list-item button:hover {
+    background-color: #d32f2f;
+}
+
+.section-list-item form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.section-list-item input {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 8px;
+    width: 100%;
 }

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import "../../css/QuestionList.css";
+import "../../css/Question.css";
 
 const QuestionList = ({ questions, fetchQuestions }) => {
   const [editingQuestion, setEditingQuestion] = useState(null);
@@ -51,9 +51,9 @@ const QuestionList = ({ questions, fetchQuestions }) => {
       <h3>Questions</h3>
       <ul className="question-list">
         {questionArray.map((question) => (
-          <li key={question.id} className="question-item">
+          <li key={question.id} className="question-list-item">
             {editingQuestion === question.id ? (
-              <>
+              <form onSubmit={(e) => { e.preventDefault(); handleUpdate(question.id); }}>
                 <input
                   type="text"
                   value={newQuestionText}
@@ -61,11 +61,11 @@ const QuestionList = ({ questions, fetchQuestions }) => {
                   className="input-edit"
                   onKeyDown={(e) => handleKeyDown(e, question.id)}
                 />
-                <button onClick={() => handleUpdate(question.id)} className="btn-save">Save</button>
-                <button onClick={() => setEditingQuestion(null)} className="btn-cancel">Cancel</button>
-              </>
+                <button type="submit" className="btn-save">Save</button>
+                <button type="button" onClick={() => setEditingQuestion(null)} className="btn-cancel">Cancel</button>
+              </form>
             ) : (
-              <>
+              <div>
                 <Link
                   to={`/question/${question.id}/answers`}
                   state={{ fromSectionId: question.sectionId }}
@@ -75,7 +75,7 @@ const QuestionList = ({ questions, fetchQuestions }) => {
                 </Link>
                 <button onClick={() => handleEdit(question)} className="btn-edit">Edit</button>
                 <button onClick={() => handleDelete(question.id)} className="btn-delete">Delete</button>
-              </>
+              </div>
             )}
           </li>
         ))}

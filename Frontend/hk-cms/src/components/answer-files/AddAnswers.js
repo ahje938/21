@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import AnswerList from "./AnswerList";
-import "../../css/AddAnswers.css"
+import "../../css/Answer.css"
 
 
 const AddAnswers = () => {
@@ -55,35 +55,33 @@ const AddAnswers = () => {
 
   return (
     <div className="add-answer-container">
-      <h2>Manage Answers for Question {questionId}</h2>
+        <h2>Manage Answers for Question {questionId}</h2>
 
-      <form onSubmit={handleSubmit} className="answer-form">
-        <div className="form-group">
-          <label>Answer Text:</label>
-          <input
-            type="text"
-            value={answerText}
-            onChange={(e) => setAnswerText(e.target.value)}
-            placeholder="Enter answer text"
-            className="input-text"
-          />
-        </div>
-        <div className="form-group">
-          <label>
-            <input
-              type="checkbox"
-              checked={isCorrect}
-              onChange={(e) => setIsCorrect(e.target.checked)}
-            />
-            Is Correct
-          </label>
-        </div>
-        <button type="submit" className="submit-btn">Add Answer</button>
-      </form>
+        <form onSubmit={handleSubmit} className="answer-form">
+            <div className="form-group">
+                <label>Answer Text:</label>
+                <input
+                    type="text"
+                    value={answerText}
+                    onChange={(e) => setAnswerText(e.target.value)}
+                    placeholder="Enter answer text"
+                    className="input-text"
+                />
+            </div>
+            <div>
+                <input
+                    type="checkbox"
+                    checked={isCorrect}
+                    onChange={(e) => setIsCorrect(e.target.checked)}
+                />
+                <label>Correct Answer</label>
+            </div>
+            <button type="submit" className="submit-btn">Add Answer</button>
+        </form>
 
-      <AnswerList answers={answers} fetchAnswers={fetchAnswers} />
+        <AnswerList answers={answers} fetchAnswers={fetchAnswers} />
     </div>
-  );
+);
 };
 
 export default AddAnswers;

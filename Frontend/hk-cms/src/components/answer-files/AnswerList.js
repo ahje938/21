@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import "../../css/AnswerList.css";
+import "../../css/Answer.css";
 
 const AnswerList = ({ answers, fetchAnswers }) => {
   const [editingAnswer, setEditingAnswer] = useState(null);

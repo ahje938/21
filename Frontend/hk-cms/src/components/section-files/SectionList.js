@@ -59,11 +59,11 @@ const SectionList = ({ fetchSections }) => {
   if (sections.length === 0) return <p>No sections available.</p>;
 
   return (
-    <div className="section-list">
+    <div className="section-list-container">
       <h3>Section List</h3>
       <ul>
         {sections.map((section) => (
-          <li key={section.id}>
+          <li key={section.id} className="section-list-item">
             {editingSectionId === section.id ? (
               <form onSubmit={(e) => { e.preventDefault(); handleSave(section.id); }}>
                 <input

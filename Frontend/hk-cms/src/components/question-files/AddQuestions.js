@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import QuestionList from "./QuestionList";
-import "../../css/AddQuestions.css";
+import "../../css/Question.css";
 
 const AddQuestions = () => {
   const [questionText, setQuestionText] = useState("");
