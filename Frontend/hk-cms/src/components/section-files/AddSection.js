@@ -31,7 +31,7 @@ const AddSection = () => {
             <h2>Create a New Section</h2>
             <form onSubmit={handleSubmit} className="section-form">
                 <div>
-                    <label>Section Name:</label>
+                    <label>Section Name : </label>
                     <input
                         type="text"
                         value={name}

@@ -6,7 +6,14 @@
     max-width: 600px;
     margin: 20px auto;
 }
-
+.add-section-container .section-form input[type="text"] {
+    width: 100%; /* Make input field fill the container */
+    padding: 12px; /* Add padding inside the input field */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em; /* Increase font size for better readability */
+    box-sizing: border-box; /* Ensure padding is included in width */
+}
 .add-section-container h2 {
     font-size: 1.5em;
     color: #333;

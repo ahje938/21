@@ -48,28 +48,29 @@ const AddQuestions = () => {
       console.error("There was an error adding the question:", error.response ? error.response.data : error.message);
     }
   };
-
+  
   return (
     <div className="add-question-container">
-    <h2>Manage Questions for Section {sectionId}</h2>
-
-    <form onSubmit={handleSubmit} className="question-form">
-      <div className="form-group">
-        <label>Question Text:</label>
-        <input
-          type="text"
-          value={questionText}
-          onChange={(e) => setQuestionText(e.target.value)}
-          placeholder="Enter question text"
-          className="input-text"
-        />
-      </div>
-      <button type="submit" className="submit-btn">Add Question</button>
-    </form>
-
-    <QuestionList questions={questions} fetchQuestions={fetchQuestions} />
-  </div>
+      <h2>Manage Questions for Section {sectionId}</h2>
+  
+      <form onSubmit={handleSubmit} className="question-form">
+        <div className="form-group">
+          <label>Question Text: </label>
+          <textarea
+            value={questionText}
+            onChange={(e) => setQuestionText(e.target.value)}
+            placeholder="Enter question text"
+            className="input-text"
+            rows="4" // Adjust the number of rows as needed
+          />
+        </div>
+        <button type="submit" className="submit-btn">Add Question</button>
+      </form>
+  
+      <QuestionList questions={questions} fetchQuestions={fetchQuestions} />
+    </div>
   );
+  
 };
 
 export default AddQuestions;

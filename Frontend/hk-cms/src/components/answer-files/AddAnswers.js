@@ -55,33 +55,34 @@ const AddAnswers = () => {
 
   return (
     <div className="add-answer-container">
-        <h2>Manage Answers for Question {questionId}</h2>
-
-        <form onSubmit={handleSubmit} className="answer-form">
-            <div className="form-group">
-                <label>Answer Text:</label>
-                <input
-                    type="text"
-                    value={answerText}
-                    onChange={(e) => setAnswerText(e.target.value)}
-                    placeholder="Enter answer text"
-                    className="input-text"
-                />
-            </div>
-            <div>
-                <input
-                    type="checkbox"
-                    checked={isCorrect}
-                    onChange={(e) => setIsCorrect(e.target.checked)}
-                />
-                <label>Correct Answer</label>
-            </div>
-            <button type="submit" className="submit-btn">Add Answer</button>
-        </form>
-
-        <AnswerList answers={answers} fetchAnswers={fetchAnswers} />
+      <h2>Manage Answers for Question {questionId}</h2>
+  
+      <form onSubmit={handleSubmit} className="answer-form">
+        <div className="form-group">
+          <label>Answer Text: </label>
+          <textarea
+            value={answerText}
+            onChange={(e) => setAnswerText(e.target.value)}
+            placeholder="Enter answer text"
+            className="input-text"
+            rows="4" // Adjust the number of rows as needed
+          />
+        </div>
+        <div>
+          <input
+            type="checkbox"
+            checked={isCorrect}
+            onChange={(e) => setIsCorrect(e.target.checked)}
+          />
+          <label>Correct Answer</label>
+        </div>
+        <button type="submit" className="submit-btn">Add Answer</button>
+      </form>
+  
+      <AnswerList answers={answers} fetchAnswers={fetchAnswers} />
     </div>
-);
+  );
+  
 };
 
 export default AddAnswers;
