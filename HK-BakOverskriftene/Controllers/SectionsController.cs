@@ -83,6 +83,29 @@ namespace BakOverskriftene.Api.Controllers {
 
             return Ok(section);
         }
+        [HttpGet("WithDetails")]
+        public async Task<IActionResult> GetSectionsWithQuestionsAndAnswers() {
+            var sections = await _context.Sections
+                .Include(s => s.Questions)
+                .ThenInclude(q => q.Answers)
+                .Select(s => new SectionDetailsDTO {
+                    Id = s.Id,
+                    SectionName = s.Name,
+                    Questions = s.Questions.Select(q => new QuestionDetailsDTO {
+                        Id = q.Id,
+                        QuestionText = q.QuestionText,
+                        Answers = q.Answers.Select(a => new AnswerDetailsDTO {
+                            Id = a.Id,
+                            AnswerText = a.AnswerText,
+                            IsCorrect = a.Correct
+                        }).ToList()
+                    }).ToList()
+                })
+                .ToListAsync();
+
+            return Ok(sections);
+        }
+
 
 
     }
