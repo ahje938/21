@@ -55,15 +55,15 @@ const AddAnswers = () => {
 
   return (
     <div className="add-answer-container">
-      <h2>Manage Answers for Question {questionId}</h2>
+      <h2>Håndter svar til spørsmål </h2>
   
       <form onSubmit={handleSubmit} className="answer-form">
         <div className="form-group">
-          <label>Answer Text: </label>
+          <label>Svar tekst : </label>
           <textarea
             value={answerText}
             onChange={(e) => setAnswerText(e.target.value)}
-            placeholder="Enter answer text"
+            placeholder="Skriv in svartekst"
             className="input-text"
             rows="4" // Adjust the number of rows as needed
           />
@@ -74,9 +74,9 @@ const AddAnswers = () => {
             checked={isCorrect}
             onChange={(e) => setIsCorrect(e.target.checked)}
           />
-          <label>Correct Answer</label>
+          <label>Korrekt svar</label>
         </div>
-        <button type="submit" className="submit-btn">Add Answer</button>
+        <button type="submit" className="submit-btn">Legg til svar</button>
       </form>
   
       <AnswerList answers={answers} fetchAnswers={fetchAnswers} />

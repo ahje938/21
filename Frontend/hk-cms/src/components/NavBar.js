@@ -21,11 +21,11 @@ const NavBar = () => {
     <nav className="navbar">
       <ul>
         <li>
-          <Link to="/sections">Back to Sections</Link>
+          <Link to="/sections">Tilbake til moduler</Link>
         </li>
         {location.pathname.startsWith('/question/') && (
           <li>
-            <button onClick={handleBackToQuestions}>Back to Questions</button>
+            <button onClick={handleBackToQuestions}>Tilbake til spørsmål</button>
           </li>
         )}
       </ul>

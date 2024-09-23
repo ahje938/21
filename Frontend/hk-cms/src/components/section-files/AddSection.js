@@ -28,19 +28,19 @@ const AddSection = () => {
 
     return (
         <div className="add-section-container">
-            <h2>Create a New Section</h2>
+            <h2>Lag en ny modul</h2>
             <form onSubmit={handleSubmit} className="section-form">
                 <div>
-                    <label>Section Name : </label>
+                    <label>Modul tittel : </label>
                     <input
                         type="text"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
-                        placeholder="Enter section name"
+                        placeholder="Skriv in tittel på modul"
                     />
                 </div>
                 {error && <p className="error-message">{error}</p>}
-                <button type="submit">Create Section</button>
+                <button type="submit">Lag modul</button>
             </form>
         </div>
     );

@@ -50,7 +50,7 @@ const AnswerList = ({ answers, fetchAnswers }) => {
 
   return (
     <div className="answer-list-container">
-      <h3>Answers</h3>
+      <h3>Svar</h3>
       <ul className="answer-list">
         {answerArray.map((answer) => (
           <li key={answer.id} className="answer-item">
@@ -69,14 +69,14 @@ const AnswerList = ({ answers, fetchAnswers }) => {
                   onChange={(e) => setIsCorrect(e.target.checked)}
                   className="input-checkbox"
                 />
-                <button onClick={() => handleUpdate(answer.id)} className="btn-save">Save</button>
-                <button onClick={() => setEditingAnswer(null)} className="btn-cancel">Cancel</button>
+                <button onClick={() => handleUpdate(answer.id)} className="btn-save">Lagre</button>
+                <button onClick={() => setEditingAnswer(null)} className="btn-cancel">Kansellere</button>
               </>
             ) : (
               <>
                 {answer.answerText} - {answer.correct ? "Correct" : "Incorrect"}
-                <button onClick={() => handleEdit(answer)} className="btn-edit">Edit</button>
-                <button onClick={() => handleDelete(answer.id)} className="btn-delete">Delete</button>
+                <button onClick={() => handleEdit(answer)} className="btn-edit">Oppdater</button>
+                <button onClick={() => handleDelete(answer.id)} className="btn-delete">Slett</button>
               </>
             )}
           </li>

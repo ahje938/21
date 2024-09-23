@@ -48,7 +48,7 @@ const QuestionList = ({ questions, fetchQuestions }) => {
 
   return (
     <div className="question-list-container">
-      <h3>Questions</h3>
+      <h3>Spørsmål</h3>
       <ul className="question-list">
         {questionArray.map((question) => (
           <li key={question.id} className="question-list-item">
@@ -61,8 +61,8 @@ const QuestionList = ({ questions, fetchQuestions }) => {
                   className="input-edit"
                   onKeyDown={(e) => handleKeyDown(e, question.id)}
                 />
-                <button type="submit" className="btn-save">Save</button>
-                <button type="button" onClick={() => setEditingQuestion(null)} className="btn-cancel">Cancel</button>
+                <button type="submit" className="btn-save">Lagre</button>
+                <button type="button" onClick={() => setEditingQuestion(null)} className="btn-cancel">Kansellere</button>
               </form>
             ) : (
               <div>
@@ -73,8 +73,8 @@ const QuestionList = ({ questions, fetchQuestions }) => {
                 >
                   {question.questionText}
                 </Link>
-                <button onClick={() => handleEdit(question)} className="btn-edit">Edit</button>
-                <button onClick={() => handleDelete(question.id)} className="btn-delete">Delete</button>
+                <button onClick={() => handleEdit(question)} className="btn-edit">Oppdater</button>
+                <button onClick={() => handleDelete(question.id)} className="btn-delete">Slett</button>
               </div>
             )}
           </li>
