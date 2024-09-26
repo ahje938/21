@@ -1,17 +1,18 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import { del, put } from "../../services/Api"; // Import delete (del) and put methods from Api.js
 import "../../css/Question.css";
 
-const QuestionList = ({ questions, fetchQuestions }) => {
+const QuestionList = ({ questions = {}, fetchQuestions }) => {
   const [editingQuestion, setEditingQuestion] = useState(null);
   const [newQuestionText, setNewQuestionText] = useState("");
 
-  const questionArray = questions.$values || questions;
+  // Use Array.isArray to check if questions is an array; if not, use $values or fallback to empty array
+  const questionArray = Array.isArray(questions) ? questions : questions.$values || [];
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`https://localhost:7263/api/questions/${id}`);
+      await del(`/questions/${id}`); // Use del helper method
       fetchQuestions();
     } catch (error) {
       console.error("Error deleting question:", error);
@@ -25,10 +26,10 @@ const QuestionList = ({ questions, fetchQuestions }) => {
 
   const handleUpdate = async (id) => {
     try {
-      await axios.put(`https://localhost:7263/api/questions/${id}`, {
+      await put(`/questions/${id}`, {
         QuestionText: newQuestionText,
-        SectionId: questionArray[0].sectionId,
-      });
+        SectionId: questionArray[0]?.sectionId, // Use optional chaining to prevent errors
+      }); // Use put helper method
       setEditingQuestion(null);
       fetchQuestions();
     } catch (error) {
@@ -42,8 +43,9 @@ const QuestionList = ({ questions, fetchQuestions }) => {
     }
   };
 
-  if (!Array.isArray(questionArray) || questionArray.length === 0) {
-    return <p>No questions available.</p>;
+  // Display loading message or fallback if questions are not available
+  if (!questions || (Array.isArray(questions) && questions.length === 0)) {
+    return <p>Loading or no questions available.</p>;
   }
 
   return (

@@ -1,9 +1,8 @@
 import React, { useState, useEffect, useCallback } from "react";
-import axios from "axios";
 import { useParams } from "react-router-dom";
 import AnswerList from "./AnswerList";
-import "../../css/Answer.css"
-
+import { get, post } from "../../services/Api"; // Use the helper functions from Api.js
+import "../../css/Answer.css";
 
 const AddAnswers = () => {
   const [answerText, setAnswerText] = useState("");
@@ -14,8 +13,8 @@ const AddAnswers = () => {
   // Fetch answers
   const fetchAnswers = useCallback(async () => {
     try {
-      const response = await axios.get(`https://localhost:7263/api/answers/question/${questionId}`);
-      setAnswers(response.data.$values || response.data); // Set the fetched answers
+      const response = await get(`/answers/question/${questionId}`);
+      setAnswers(response.$values || response); // Set the fetched answers
     } catch (error) {
       console.error("Error fetching answers:", error);
     }
@@ -39,31 +38,31 @@ const AddAnswers = () => {
     }
 
     try {
-      await axios.post(`https://localhost:7263/api/answers/${questionId}`, {
+      await post(`/answers/${questionId}`, {
         AnswerText: answerText,
         Correct: isCorrect,
-        QuestionId: questionId
+        QuestionId: questionId,
       });
 
       setAnswerText(""); // Clear input
       setIsCorrect(false); // Reset checkbox
       fetchAnswers(); // Refresh the answer list after adding a new answer
     } catch (error) {
-      console.error("There was an error adding the answer:", error.response ? error.response.data : error.message);
+      console.error("There was an error adding the answer:", error);
     }
   };
 
   return (
     <div className="add-answer-container">
-      <h2>Håndter svar til spørsmål </h2>
-  
+      <h2>Håndter svar til spørsmål</h2>
+
       <form onSubmit={handleSubmit} className="answer-form">
         <div className="form-group">
-          <label>Svar tekst : </label>
+          <label>Svar tekst:</label>
           <textarea
             value={answerText}
             onChange={(e) => setAnswerText(e.target.value)}
-            placeholder="Skriv in svartekst"
+            placeholder="Skriv inn svartekst"
             className="input-text"
             rows="4" // Adjust the number of rows as needed
           />
@@ -76,13 +75,14 @@ const AddAnswers = () => {
           />
           <label>Korrekt svar</label>
         </div>
-        <button type="submit" className="submit-btn">Legg til svar</button>
+        <button type="submit" className="submit-btn">
+          Legg til svar
+        </button>
       </form>
-  
+
       <AnswerList answers={answers} fetchAnswers={fetchAnswers} />
     </div>
   );
-  
 };
 
 export default AddAnswers;

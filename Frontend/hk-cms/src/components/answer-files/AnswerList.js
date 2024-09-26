@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import axios from "axios";
+import { del, put } from "../../services/Api"; // Import delete and put methods from Api.js
 import "../../css/Answer.css";
 
 const AnswerList = ({ answers, fetchAnswers }) => {
@@ -9,7 +9,7 @@ const AnswerList = ({ answers, fetchAnswers }) => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`https://localhost:7263/api/answers/${id}`);
+      await del(`/answers/${id}`); // Use the delete helper function
       fetchAnswers();
     } catch (error) {
       console.error("Error deleting answer:", error);
@@ -24,10 +24,10 @@ const AnswerList = ({ answers, fetchAnswers }) => {
 
   const handleUpdate = async (id) => {
     try {
-      await axios.put(`https://localhost:7263/api/answers/${id}`, {
+      await put(`/answers/${id}`, {
         AnswerText: newAnswerText,
         Correct: isCorrect,
-        QuestionId: answers[0].questionId,
+        QuestionId: answers[0].questionId, // Assuming answers always have at least one item
       });
       setEditingAnswer(null);
       fetchAnswers();
@@ -69,14 +69,22 @@ const AnswerList = ({ answers, fetchAnswers }) => {
                   onChange={(e) => setIsCorrect(e.target.checked)}
                   className="input-checkbox"
                 />
-                <button onClick={() => handleUpdate(answer.id)} className="btn-save">Lagre</button>
-                <button onClick={() => setEditingAnswer(null)} className="btn-cancel">Kansellere</button>
+                <button onClick={() => handleUpdate(answer.id)} className="btn-save">
+                  Lagre
+                </button>
+                <button onClick={() => setEditingAnswer(null)} className="btn-cancel">
+                  Kansellere
+                </button>
               </>
             ) : (
               <>
                 {answer.answerText} - {answer.correct ? "Correct" : "Incorrect"}
-                <button onClick={() => handleEdit(answer)} className="btn-edit">Oppdater</button>
-                <button onClick={() => handleDelete(answer.id)} className="btn-delete">Slett</button>
+                <button onClick={() => handleEdit(answer)} className="btn-edit">
+                  Oppdater
+                </button>
+                <button onClick={() => handleDelete(answer.id)} className="btn-delete">
+                  Slett
+                </button>
               </>
             )}
           </li>

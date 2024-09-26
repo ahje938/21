@@ -31,6 +31,7 @@ internal class Program {
             .AddJsonOptions(options => {
                 options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve;
             });
+
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
@@ -40,6 +41,9 @@ internal class Program {
         // Add the CORS middleware to the pipeline
         app.UseCors("AllowAny");
 
+        // Serve static files (for React app)
+        app.UseStaticFiles();
+
         // Configure the HTTP request pipeline.
         if (app.Environment.IsDevelopment()) {
             app.UseSwagger();
@@ -48,7 +52,12 @@ internal class Program {
 
         app.UseHttpsRedirection();
         app.UseAuthorization();
+
+        // Add routing to allow fallback to index.html for React app
         app.MapControllers();
+
+        // This line allows your React app to be served
+        app.MapFallbackToFile("index.html");
 
         app.Run();
     }

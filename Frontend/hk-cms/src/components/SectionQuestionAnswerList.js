@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { get } from "../services/Api"; // Import get method from Api.js
 import "./../css/SideBar.css";
 
 const SectionQuestionAnswerList = () => {
@@ -8,9 +9,8 @@ const SectionQuestionAnswerList = () => {
   const [expandedQuestions, setExpandedQuestions] = useState({});
 
   useEffect(() => {
-    // Fetch sections from the API with details
-    fetch("https://localhost:7263/api/section/WithDetails")
-      .then((res) => res.json())
+    // Fetch sections with details using the get helper method
+    get("/section/WithDetails")
       .then((data) => {
         const sectionsData = data.$values || data;
         setSections(sectionsData);
@@ -82,4 +82,3 @@ const SectionQuestionAnswerList = () => {
 };
 
 export default SectionQuestionAnswerList;
-

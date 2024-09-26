@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { Link } from "react-router-dom";
+import { get, put, del } from "../../services/Api"; // Import API methods
 import "../../css/Section.css";
 
 const SectionList = ({ fetchSections }) => {
@@ -12,8 +12,8 @@ const SectionList = ({ fetchSections }) => {
   useEffect(() => {
     const fetchSectionData = async () => {
       try {
-        const response = await axios.get("https://localhost:7263/api/section");
-        setSections(response.data.$values || response.data);
+        const data = await get("/section"); // Use 'get' method from Api.js
+        setSections(data.$values || data);
         setLoading(false);
       } catch (error) {
         console.error("Error fetching sections:", error);
@@ -25,7 +25,7 @@ const SectionList = ({ fetchSections }) => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`https://localhost:7263/api/section/${id}`);
+      await del(`/section/${id}`); // Use 'del' method from Api.js
       setSections(sections.filter((section) => section.id !== id));
     } catch (error) {
       console.error("Error deleting section:", error);
@@ -39,7 +39,7 @@ const SectionList = ({ fetchSections }) => {
 
   const handleSave = async (id) => {
     try {
-      await axios.put(`https://localhost:7263/api/section/${id}`, { Name: editedSectionName });
+      await put(`/section/${id}`, { Name: editedSectionName }); // Use 'put' method from Api.js
       setSections(
         sections.map((section) =>
           section.id === id ? { ...section, sectionName: editedSectionName } : section
