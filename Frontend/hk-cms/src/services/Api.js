@@ -1,6 +1,7 @@
 // src/services/Api.js
 
-const baseURL = "https://localhost:7263/api"; // 
+// const baseURL = "https://localhost:7263/api"; //// LocalDevelopment
+const baseURL = "http://tenkkritisk-001-site1.htempurl.com/api"; //Change to HTTPS when we aquire a SSL from smarterasp.net
 
 // Helper function for GET requests
 export const get = async (endpoint) => {

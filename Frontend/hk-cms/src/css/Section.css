@@ -4,7 +4,7 @@
     padding: 20px;
     border-radius: 8px;
     max-width: 600px;
-    margin: 20px auto;
+    margin: 20px 40px 5px auto;
 }
 .add-section-container .section-form input[type="text"] {
     width: 100%; /* Make input field fill the container */
@@ -54,6 +54,7 @@
 .section-list-container {
     margin: 20px auto;
     max-width: 600px;
+    margin: 20px 40px 5px auto;
 }
 
 .section-list-item {
