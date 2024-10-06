@@ -44,7 +44,7 @@ input {
     box-sizing: border-box;
 }
 
-button {
+.log-btn {
     padding: 10px;
     background-color: #4CAF50;
     color: white;
@@ -54,6 +54,6 @@ button {
     cursor: pointer;
 }
 
-button:hover {
+.log-btn:hover {
     background-color: #45a049;
 }

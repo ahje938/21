@@ -1,12 +1,10 @@
 import React, { useState } from "react";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { post } from "../../services/Api"; // Adjust the import according to your project structure
 import "../../css/Section.css";
 
-const AddSection = () => {
+const AddSection = ({ triggerFetch }) => {
     const [name, setName] = useState("");
     const [error, setError] = useState("");
-    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -17,9 +15,9 @@ const AddSection = () => {
         }
 
         try {
-            const response = await axios.post("https://localhost:7263/api/section", { name });
-            const sectionId = response.data.id;
-            navigate(`/section/${sectionId}/questions`); // Redirect to the questions page
+            await post("/section", { name }); // Use the correct endpoint
+            setName(""); // Clear the input field
+            triggerFetch(); // Call the function to refresh the section list
         } catch (error) {
             setError("Error creating section.");
             console.error("There was an error creating the section!", error);
@@ -47,3 +45,4 @@ const AddSection = () => {
 };
 
 export default AddSection;
+

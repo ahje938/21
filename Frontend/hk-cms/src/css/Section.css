@@ -39,7 +39,7 @@
 .add-section-container button {
     margin-top: 15px;
     padding: 10px;
-    background-color: #37693a;
+    background-color: #1714ca;
     color: white;
     border: none;
     border-radius: 4px;
@@ -47,7 +47,7 @@
 }
 
 .add-section-container button:hover {
-    background-color: #45a049;
+    background-color: #0d178a;
 }
 
 /* Section List */
@@ -65,17 +65,40 @@
     border-radius: 4px;
 }
 
-.section-list-item button {
+.section-list-item .btn-edit {
     margin-left: 10px;
-    background-color: #f44336;
+    background-color: #198105; 
     color: white;
     border: none;
-    border-radius: 4px;
+    border-radius: 20px; 
     cursor: pointer;
+    padding: 6px 12px;
+    font-size: 10px;   
 }
 
-.section-list-item button:hover {
-    background-color: #d32f2f;
+.section-list-item .btn-edit:hover {
+    background-color: #146803; 
+}
+
+.section-list-item .btn-delete {
+    margin-left: 10px;
+    background-color: #f44336; 
+    color: white;
+    border: none;
+    border-radius: 20px; 
+    cursor: pointer;
+    padding: 6px 12px; 
+    font-size: 10px;     
+}
+
+.section-list-item .btn-delete:hover {
+    background-color: #d32f2f; 
+}
+.section-list-item .btn-save {
+    background-color: #198105;
+}
+.section-list-item .btn-cancel {
+    background-color: #f44336;
 }
 
 .section-list-item form {
@@ -89,4 +112,8 @@
     border-radius: 4px;
     padding: 8px;
     width: 100%;
+}
+
+.section-list-item .edit-btn {
+    background-color: aqua;
 }

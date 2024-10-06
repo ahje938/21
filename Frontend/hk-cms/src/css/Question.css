@@ -12,20 +12,42 @@
     border-radius: 4px;
 }
 
-.question-list-item .btn-edit,
-.question-list-item .btn-delete {
+.question-list-item .btn-edit {
     margin-left: 10px;
-    background-color: #f44336;
+    background-color: #198105; 
     color: white;
     border: none;
-    border-radius: 4px;
+    border-radius: 20px; 
     cursor: pointer;
+    padding: 6px 12px;
+    font-size: 10px;   
 }
 
-.question-list-item .btn-edit:hover,
-.question-list-item .btn-delete:hover {
-    background-color: #d32f2f;
+.question-list-item .btn-edit:hover {
+    background-color: #146803; 
 }
+
+.question-list-item .btn-delete {
+    margin-left: 10px;
+    background-color: #f44336; 
+    color: white;
+    border: none;
+    border-radius: 20px; 
+    cursor: pointer;
+    padding: 6px 12px; 
+    font-size: 10px;     
+}
+
+.question-list-item .btn-delete:hover {
+    background-color: #d32f2f; 
+}
+.question-list-item .btn-save {
+    background-color: #198105;
+}
+.question-list-item .btn-cancel {
+    background-color: #f44336;
+}
+
 
 /* Add Question */
 .add-question-container {
@@ -75,7 +97,7 @@
 .add-question-container .submit-btn {
     margin-top: 15px;
     padding: 10px;
-    background-color: #37693a;
+    background-color: #1714ca;
     color: white;
     border: none;
     border-radius: 4px;
@@ -83,5 +105,5 @@
 }
 
 .add-question-container .submit-btn:hover {
-    background-color: #45a049;
+    background-color: #0d178a;
 }

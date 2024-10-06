@@ -36,7 +36,7 @@ const Login = () => {
                             required
                         />
                     </div>
-                    <button type="submit">Login</button>
+                    <button className="log-btn" type="submit">Login</button>
                 </form>
             </div>
         </div>
