@@ -13,14 +13,21 @@ const SectionQuestionAnswerList = () => {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    // Fetch sections with details using the get helper method
+    fetchSections();
+  }, []);
+
+  const fetchSections = () => {
     get("/section/WithDetails")
       .then((data) => {
         const sectionsData = data.$values || data;
         setSections(sectionsData);
       })
       .catch((error) => console.error("Error fetching sections:", error));
-  }, []);
+  };
+
+  const refreshSections = () => {
+    fetchSections(); // Call the fetch function to update sections
+  };
 
   const toggleSection = (sectionId) => {
     setExpandedSections((prev) => ({
@@ -75,6 +82,14 @@ const SectionQuestionAnswerList = () => {
           >
             +
           </button>
+          {/* Add a refresh button next to the add button */}
+          <button
+    className="refresh-section-btn"
+    onClick={refreshSections}
+    title="Refresh Sections"
+  >
+    🔄
+  </button>
         </h3>
 
         {/* Show the form to add a section when the button is clicked */}
