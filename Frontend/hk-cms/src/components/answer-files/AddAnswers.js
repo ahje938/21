@@ -67,13 +67,13 @@ const AddAnswers = () => {
             rows="4" // Adjust the number of rows as needed
           />
         </div>
-        <div>
+        <div className="checkbox-container">
+        <label>Korrekt svar</label>
           <input
             type="checkbox"
             checked={isCorrect}
             onChange={(e) => setIsCorrect(e.target.checked)}
           />
-          <label>Korrekt svar</label>
         </div>
         <button type="submit" className="submit-btn">
           Legg til svar

@@ -81,6 +81,18 @@
 .add-answer-container .form-group {
     margin-top: 10px;
 }
+.checkbox-container {
+    margin-top: 15px;
+    position: relative;
+    text-align: center; /* Center-aligns content within the container */
+}
+
+.checkbox-container label {
+    position: absolute;
+    left: 0; /* Moves the label to the left edge of the container */
+    font-weight: bold;
+    white-space: nowrap;
+}
 
 .add-answer-container label {
     font-weight: bold;
