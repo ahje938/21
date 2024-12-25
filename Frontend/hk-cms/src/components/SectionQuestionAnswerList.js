@@ -84,12 +84,12 @@ const SectionQuestionAnswerList = () => {
           </button>
           {/* Add a refresh button next to the add button */}
           <button
-    className="refresh-section-btn"
-    onClick={refreshSections}
-    title="Refresh Sections"
-  >
-    🔄
-  </button>
+            className="refresh-section-btn"
+            onClick={refreshSections}
+            title="Refresh Sections"
+          >
+            🔄
+          </button>
         </h3>
 
         {/* Show the form to add a section when the button is clicked */}
@@ -109,8 +109,10 @@ const SectionQuestionAnswerList = () => {
         <ul>
           {sections.map((section) => (
             <li key={section.id}>
+              {/* Pass the state when navigating to the section questions page */}
               <Link
                 to={`/section/${section.id}/questions`}
+                state={{ fromSectionId: section.id }} // Pass the section ID in state here
                 onClick={() => toggleSection(section.id)}
               >
                 {section.sectionName}
@@ -119,8 +121,10 @@ const SectionQuestionAnswerList = () => {
                 <ul>
                   {extractValues(section.questions).map((question) => (
                     <li key={question.id}>
+                      {/* Pass the state when navigating to the question answers page */}
                       <Link
                         to={`/question/${question.id}/answers`}
+                        state={{ fromSectionId: section.id }} // Pass the section ID here as well
                         onClick={() => toggleQuestion(question.id)}
                       >
                         {question.questionText}

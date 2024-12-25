@@ -1,4 +1,4 @@
-﻿Unordered list of things to do.
+﻿Unordered list of things to do.  --TODO ||FIXED
 
 1. Add players to the database:
 - Add some mock data to show in the CMS
@@ -10,8 +10,8 @@
 2. Consider fixing the refresh trigger for the sidebar. **Low priority
 - Consider enhancing the nav-bar to be more intuitiv.
 - Change "Tilbake til spørsmål" navigation to navigate propperly. 
-- Consider adding the questiontext to the header when modifiying a spesific question. 
-- Fix scrolling for the sidebar.
+|| Consider adding the questiontext to the header when modifiying a spesific question. 
+|| Fix scrolling for the sidebar.
 
 3. Refactor some of the code to make it more intuitive to understand for the students. 
 - Add propper comments to the code where neccessary to make it easier to understand the why of the code.

@@ -8,11 +8,15 @@ const NavBar = () => {
   
   // Handle Back to Questions navigation
   const handleBackToQuestions = () => {
+    // Retrieve the sectionId from location.state (set when navigating to the question page)
     const sectionId = location.state?.fromSectionId;
+    console.log('Section ID from state:', sectionId); // This will help you debug
+    
     if (sectionId) {
+      // If sectionId is available, navigate back to the section's question list
       navigate(`/section/${sectionId}/questions`);
     } else {
-      // Fallback to /sections if no sectionId is found
+      // If no sectionId, fall back to the sections list
       navigate('/sections');
     }
   };
