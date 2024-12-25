@@ -10,6 +10,7 @@
 2. Consider fixing the refresh trigger for the sidebar. **Low priority
 - Consider fixing the enhancing the nav-bar to be more intuitiv.
 - Consider adding the questiontext to the header when modifiying a spesific question. 
+- Fix scrolling for the sidebar.
 
 3. Refactor some of the code to make it more intuitive to understand for the students. 
 - Add propper comments to the code where neccessary to make it easier to understand the why of the code.
@@ -19,3 +20,5 @@
 
 5. Lag et kall til login-siden slik at vi skaper et "dormancy-ping" for å kald-starte cms'et. (Dette kan fungere for appen også, kommenter til studentene)
 - Endre passord og brukernavn til login (lag 2 logins?) Dette må også gjemmes fra backend kontrolleren.
+
+6. Add a function to delete spesific questions from a section. This needs to cascade delete the answeres connected to it. (Check)
