@@ -7,21 +7,23 @@ import "../../css/Answer.css";
 const AddAnswers = () => {
   const [answerText, setAnswerText] = useState("");
   const [isCorrect, setIsCorrect] = useState(false);
+  const [questionText, setQuestionText] = useState(""); // State for question text
   const { questionId } = useParams(); // Get questionId from the URL
   const [answers, setAnswers] = useState([]); // Store the list of answers
 
-  // Fetch answers
+  // Fetch both answers and question text
   const fetchAnswers = useCallback(async () => {
     try {
       const response = await get(`/answers/question/${questionId}`);
-      setAnswers(response.$values || response); // Set the fetched answers
+      setQuestionText(response.questionText);  // Set the question text
+      setAnswers(response.answers || []);      // Set the list of answers
     } catch (error) {
       console.error("Error fetching answers:", error);
     }
   }, [questionId]);
 
   useEffect(() => {
-    fetchAnswers(); // Fetch answers when the questionId changes
+    fetchAnswers(); // Fetch both question text and answers when the questionId changes
   }, [fetchAnswers]);
 
   const handleSubmit = async (e) => {
@@ -54,7 +56,9 @@ const AddAnswers = () => {
 
   return (
     <div className="add-answer-container">
-      <h2>Håndter svar til spørsmål</h2>
+
+      {/* Display the questionText */}
+      {questionText && <h3>{questionText}</h3>}
 
       <form onSubmit={handleSubmit} className="answer-form">
         <div className="form-group">
@@ -68,7 +72,7 @@ const AddAnswers = () => {
           />
         </div>
         <div className="checkbox-container">
-        <label>Korrekt svar</label>
+          <label>Korrekt svar</label>
           <input
             type="checkbox"
             checked={isCorrect}
@@ -80,6 +84,7 @@ const AddAnswers = () => {
         </button>
       </form>
 
+      {/* Pass the answers and the fetchAnswers function to AnswerList component */}
       <AnswerList answers={answers} fetchAnswers={fetchAnswers} />
     </div>
   );

@@ -9,7 +9,7 @@
 
 2. Consider fixing the refresh trigger for the sidebar. **Low priority
 - Consider enhancing the nav-bar to be more intuitiv.
-- Change "Tilbake til spørsmål" navigation to navigate propperly. 
+|| Change "Tilbake til spørsmål" navigation to navigate propperly. 
 || Consider adding the questiontext to the header when modifiying a spesific question. 
 || Fix scrolling for the sidebar.
 

@@ -16,7 +16,6 @@ const fetchSectionDetails = useCallback(async () => {
     const response = await get(`/section/${sectionId}`); 
     console.log("Raw section response:", response); 
 
-    
     const sectionData = response.$values ? response.$values[0] : response;
 
     setSection(sectionData); 
