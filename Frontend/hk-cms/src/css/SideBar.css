@@ -1,14 +1,17 @@
 /* Sidebar remains the same */
 .side-panel {
-  max-width: 50vw; /* Sidebar can be as wide as 50% of the screen */
-  min-width: 10vw; /* Sidebar minimum width is 10% of the screen */
+  max-width: 50vw;
+  min-width: 10vw;
   padding: 20px;
   background-color: #f8f9fa;
   position: fixed;
-  height: 100%;
+  top: 50px; /* Ensure it's pinned to the top */
+  bottom: 0; /* Ensure it stretches to the bottom */
+  left: 0;
+  right: 0;
   overflow-y: auto;
   border-right: 1px solid #ccc;
-  transition: width 0.3s ease; /* Smooth transition for resizing */
+  transition: width 0.3s ease;
 }
 
 /* Move the slider to the left and add a top margin */

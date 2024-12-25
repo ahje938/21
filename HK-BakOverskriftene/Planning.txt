@@ -8,7 +8,8 @@
 - Navnfilter til Create user funksjonen (Hvordan skal vi håndtere dette i app?)
 
 2. Consider fixing the refresh trigger for the sidebar. **Low priority
-- Consider fixing the enhancing the nav-bar to be more intuitiv.
+- Consider enhancing the nav-bar to be more intuitiv.
+- Change "Tilbake til spørsmål" navigation to navigate propperly. 
 - Consider adding the questiontext to the header when modifiying a spesific question. 
 - Fix scrolling for the sidebar.
 
