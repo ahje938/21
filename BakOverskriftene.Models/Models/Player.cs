@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Identity;
 
-namespace BakOverskriftene.Domain.Models {
+namespace BakOverskriftene.Domain.Models
+{
 
-    public class Player : IdentityUser { //Extend IdentityUser
-
-
+    public class Player : IdentityUser
+    { //Extend IdentityUser
 
         public string SecretQuestion { get; set; }
         public string SecretAnswer { get; set; }
