@@ -72,7 +72,7 @@ const AddAnswers = () => {
           />
         </div>
         <div className="checkbox-container">
-          <label>Korrekt svar</label>
+          <label>Korrekt svar sjekkboks</label>
           <input
             type="checkbox"
             checked={isCorrect}

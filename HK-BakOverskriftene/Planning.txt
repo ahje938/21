@@ -1,7 +1,7 @@
 ﻿Unordered list of things to do.  --TODO ||FIXED /DELAY
 
 1. Add players to the database:
-- Add some mock data to show in the CMS
+- Add some mock data to show in the CMS (se om det er en query editor i smarterasp.net for å legge in mock data)
 / Decide if I want to use identityUser extension to the class or store username and password in the database. (ask Tomas?)
 - Add a controller for the Player class; Create function for the app (COMMENT THAT THE STUDENTS NEED TO DECIDE DETAILS AROUND CREATION OF THE USER)
 - Create a frontend page for the CMS to display, sort and delete users from the database. 
@@ -14,7 +14,7 @@
 || Fix scrolling for the sidebar.
 
 3. Refactor some of the code to make it more intuitive to understand for the students. 
-- Add propper comments to the code where neccessary to make it easier to understand the why of the code.
+|| Add propper comments to the code where neccessary to make it easier to understand the why of the code.
 - Reconsider names of DTO's and CRUD method names. Perhaps create Interface (this might be a to deep and unnecessary abstraction for the scope of this CMS) 
 
 4. Hide connectionstring, passwords (also in frontend) in environmental variables in the program. **High priority
