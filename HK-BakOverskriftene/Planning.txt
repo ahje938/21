@@ -23,3 +23,7 @@
 - Endre passord og brukernavn til login (lag 2 logins?) Dette må også gjemmes fra backend kontrolleren.
 
 6. || Add a function to delete spesific questions from a section. This needs to cascade delete the answeres connected to it. 
+
+Additional notes: 
+
+Might have to implement some sort of cache-busting system. To make sure the newest version of the cms is loaded. This might not be a problem though. 
