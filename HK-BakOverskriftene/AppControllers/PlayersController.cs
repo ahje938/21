@@ -6,10 +6,10 @@ using Microsoft.EntityFrameworkCore;
 namespace BakOverskriftene.Controllers {
     [Route("api/[controller]")]
     [ApiController]
-    public class PlayerController : ControllerBase {
+    public class PlayersController : ControllerBase {
         private readonly UserManager<Player> _userManager;
 
-        public PlayerController(UserManager<Player> userManager) {
+        public PlayersController(UserManager<Player> userManager) {
             _userManager = userManager;
         }
 
