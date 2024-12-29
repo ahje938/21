@@ -16,6 +16,11 @@ namespace BakOverskriftene.Controllers {
         // Method to fetch all players
         [HttpGet]
         public async Task<IActionResult> GetPlayers() {
+            // Manually adding CORS headers
+            Response.Headers.Add("Access-Control-Allow-Origin", "*"); // Allow all origins or specify your domain
+            Response.Headers.Add("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+            Response.Headers.Add("Access-Control-Allow-Headers", "Content-Type, Authorization");
+
             var players = await _userManager.Users.ToListAsync();
             return Ok(players);
         }
@@ -23,6 +28,11 @@ namespace BakOverskriftene.Controllers {
         // Method to delete a player
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeletePlayer(string id) {
+            // Manually adding CORS headers
+            Response.Headers.Add("Access-Control-Allow-Origin", "*"); // Allow all origins or specify your domain
+            Response.Headers.Add("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+            Response.Headers.Add("Access-Control-Allow-Headers", "Content-Type, Authorization");
+
             var player = await _userManager.FindByIdAsync(id);
             if (player == null) {
                 return NotFound(new { message = "Player not found" });
@@ -35,8 +45,15 @@ namespace BakOverskriftene.Controllers {
 
             return BadRequest(new { message = "Failed to delete player" });
         }
+
+        // Method to add a player
         [HttpPost]
         public async Task<IActionResult> AddPlayer([FromBody] AddPlayerRequest request) {
+            // Manually adding CORS headers
+            Response.Headers.Add("Access-Control-Allow-Origin", "*"); // Allow all origins or specify your domain
+            Response.Headers.Add("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+            Response.Headers.Add("Access-Control-Allow-Headers", "Content-Type, Authorization");
+
             if (string.IsNullOrWhiteSpace(request.UserName) || string.IsNullOrWhiteSpace(request.Password)) {
                 return BadRequest(new { message = "Username and password are required." });
             }
@@ -48,13 +65,11 @@ namespace BakOverskriftene.Controllers {
                 return Ok(new { message = "Player added successfully." });
             }
 
-            // Improve error handling by providing more information
             return BadRequest(new {
                 message = "Failed to add player",
                 errors = result.Errors.Select(e => e.Description)
             });
         }
-
     }
 
     public class AddPlayerRequest {
@@ -63,4 +78,3 @@ namespace BakOverskriftene.Controllers {
         public string Password { get; set; }
     }
 }
-
