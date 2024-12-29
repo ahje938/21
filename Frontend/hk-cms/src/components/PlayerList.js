@@ -8,7 +8,11 @@ const PlayerList = () => {
   useEffect(() => {
     const fetchPlayers = async () => {
       const playersData = await getPlayers();
-      setPlayers(playersData);
+
+      // Add the check for the $values property
+      const playerArray = playersData.$values || playersData;  // Check if data is wrapped in $values
+
+      setPlayers(playerArray);  // Set the players state with the unwrapped data
     };
 
     fetchPlayers();

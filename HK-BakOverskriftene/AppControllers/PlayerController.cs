@@ -38,18 +38,23 @@ namespace BakOverskriftene.Controllers {
         [HttpPost]
         public async Task<IActionResult> AddPlayer([FromBody] AddPlayerRequest request) {
             if (string.IsNullOrWhiteSpace(request.UserName) || string.IsNullOrWhiteSpace(request.Password)) {
-                return BadRequest("Username and password are required.");
+                return BadRequest(new { message = "Username and password are required." });
             }
 
             var player = new Player { UserName = request.UserName, Email = request.Email };
             var result = await _userManager.CreateAsync(player, request.Password);
 
             if (result.Succeeded) {
-                return Ok(new { Message = "Player added successfully." });
+                return Ok(new { message = "Player added successfully." });
             }
 
-            return BadRequest(result.Errors);
+            // Improve error handling by providing more information
+            return BadRequest(new {
+                message = "Failed to add player",
+                errors = result.Errors.Select(e => e.Description)
+            });
         }
+
     }
 
     public class AddPlayerRequest {

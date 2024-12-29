@@ -26,6 +26,7 @@ const AddPlayer = ({ onPlayerAdded }) => {
       setFormData({ userName: "", email: "", password: "" });
       onPlayerAdded(newPlayer); // Notify parent component to refresh list
     } else {
+      // Display a more detailed error message if available
       setMessage("Failed to add player. Please try again.");
     }
   };
