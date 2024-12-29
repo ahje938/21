@@ -16,6 +16,7 @@ namespace BakOverskriftene.Controllers {
         // Method to fetch all players
         [HttpGet]
         public async Task<IActionResult> GetPlayers() {
+            Response.Headers.Add("Access-Control-Allow-Origin", "*"); // Explicitly adding CORS header
             // Manually adding CORS headers
             Response.Headers.Add("Access-Control-Allow-Origin", "*"); // Allow all origins or specify your domain
             Response.Headers.Add("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
@@ -28,6 +29,7 @@ namespace BakOverskriftene.Controllers {
         // Method to delete a player
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeletePlayer(string id) {
+            Response.Headers.Add("Access-Control-Allow-Origin", "*"); // Explicitly adding CORS header
             // Manually adding CORS headers
             Response.Headers.Add("Access-Control-Allow-Origin", "*"); // Allow all origins or specify your domain
             Response.Headers.Add("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
@@ -49,6 +51,7 @@ namespace BakOverskriftene.Controllers {
         // Method to add a player
         [HttpPost]
         public async Task<IActionResult> AddPlayer([FromBody] AddPlayerRequest request) {
+            Response.Headers.Add("Access-Control-Allow-Origin", "*"); // Explicitly adding CORS header
             // Manually adding CORS headers
             Response.Headers.Add("Access-Control-Allow-Origin", "*"); // Allow all origins or specify your domain
             Response.Headers.Add("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");

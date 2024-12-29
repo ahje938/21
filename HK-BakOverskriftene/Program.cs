@@ -11,7 +11,9 @@ internal class Program {
                 policy => policy
                     .AllowAnyOrigin()
                     .AllowAnyHeader()
-                    .AllowAnyMethod());
+                    .AllowAnyMethod()
+                    .AllowCredentials());
+
         });
 
         // Add services to the container.
