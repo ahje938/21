@@ -4,11 +4,19 @@ export const getPlayers = async () => {
     try {
         const response = await fetch(`${baseURL}`);
         if (!response.ok) {
-            throw new Error('Failed to fetch players');
+            throw new Error(`Failed to fetch players: ${response.status} ${response.statusText}`);
         }
-        return await response.json();
+        
+        // Handle unexpected non-JSON responses
+        const text = await response.text();
+        try {
+            return JSON.parse(text); // Attempt to parse JSON
+        } catch {
+            throw new Error("Invalid JSON response from server.");
+        }
     } catch (error) {
-        console.error(error);
+        console.error("Error fetching players:", error.message);
+        return []; // Return an empty array to prevent app crashes
     }
 };
 
@@ -27,3 +35,22 @@ export const deletePlayer = async (playerId) => {
         return false;
     }
 };
+
+// Add this function to handle POST requests
+export const createPlayer = async (playerData) => {
+    try {
+        const response = await fetch(`${baseURL}/Players`, {
+            method: 'POST',
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(playerData),
+        });
+        if (!response.ok) {
+            throw new Error('Failed to add player');
+        }
+        return await response.json();
+    } catch (error) {
+        console.error(error);
+        return null;
+    }
+};
+

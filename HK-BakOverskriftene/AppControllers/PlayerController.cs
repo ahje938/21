@@ -35,5 +35,27 @@ namespace BakOverskriftene.Controllers {
 
             return BadRequest(new { message = "Failed to delete player" });
         }
+        [HttpPost]
+        public async Task<IActionResult> AddPlayer([FromBody] AddPlayerRequest request) {
+            if (string.IsNullOrWhiteSpace(request.UserName) || string.IsNullOrWhiteSpace(request.Password)) {
+                return BadRequest("Username and password are required.");
+            }
+
+            var player = new Player { UserName = request.UserName, Email = request.Email };
+            var result = await _userManager.CreateAsync(player, request.Password);
+
+            if (result.Succeeded) {
+                return Ok(new { Message = "Player added successfully." });
+            }
+
+            return BadRequest(result.Errors);
+        }
     }
+
+    public class AddPlayerRequest {
+        public string UserName { get; set; }
+        public string Email { get; set; }
+        public string Password { get; set; }
+    }
+}
 }
