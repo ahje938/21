@@ -58,7 +58,7 @@ const App = () => {
                 <Route path="/sections" element={<Sections />} />
                 <Route path="/section/:sectionId/questions" element={<AddQuestions />} />
                 <Route path="/question/:questionId/answers" element={<AddAnswers />} />
-                <Route path="/players" element={<PlayerList />} /> {/* Add this route */}
+                <Route path="/players" element={<PlayerList />} /> 
               </Routes>
             </div>
           </>

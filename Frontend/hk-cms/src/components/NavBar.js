@@ -34,7 +34,7 @@ const NavBar = () => {
           </li>
         )}
         <li>
-          <Link to="/players">Players</Link> {/* Add this link */}
+          <Link to="/players">Players</Link> 
         </li>
       </ul>
     </nav>

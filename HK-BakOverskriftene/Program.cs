@@ -45,28 +45,35 @@ internal class Program {
 
         var app = builder.Build();
 
-        // Add the CORS middleware to the pipeline
-        app.UseCors("AllowAny");
+        // CORS middleware - this should be before authentication and authorization
+        app.UseCors("AllowAny"); // Allow cross-origin requests
 
-        // Serve static files (for React app)
+        // Static files middleware (needed to serve React app)
         app.UseStaticFiles();
 
-        // Configure the HTTP request pipeline.
+        // HTTPS redirection - generally placed before authorization for secure connections
+        app.UseHttpsRedirection();
+
+        // Authentication middleware - should be before authorization
+        app.UseAuthentication(); // This will authenticate the user
+
+        // Authorization middleware - follows authentication, checking if the user has the right permissions
+        app.UseAuthorization();
+
+        // Swagger - only in development environment
         if (app.Environment.IsDevelopment()) {
             app.UseSwagger();
             app.UseSwaggerUI();
         }
 
-        app.UseHttpsRedirection();
-        app.UseAuthorization();
-
-        // Add routing to allow fallback to index.html for React app
+        // Map controllers (routes for your API endpoints)
         app.MapControllers();
 
-        // This line allows your React app to be served
+        // Fallback route for React (single-page app)
         app.MapFallbackToFile("index.html");
 
         app.Run();
+
     }
 }
 
