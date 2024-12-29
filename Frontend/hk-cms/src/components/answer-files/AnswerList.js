@@ -27,7 +27,9 @@ const AnswerList = ({ answers, fetchAnswers }) => {
       await put(`/answers/${id}`, {
         AnswerText: newAnswerText,
         Correct: isCorrect,
-        QuestionId: answers[0].questionId, // Assuming answers always have at least one item
+        // QuestionId: answers[0].questionId, // Assuming answers always have at least one item
+        QuestionId: answers.$values && answers.$values.length > 0 ? answers.$values[0].questionId : null,
+
       });
       setEditingAnswer(null);
       fetchAnswers();
