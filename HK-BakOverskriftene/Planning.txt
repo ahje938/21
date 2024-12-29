@@ -17,7 +17,7 @@
 || Add propper comments to the code where neccessary to make it easier to understand the why of the code.
 - Reconsider names of DTO's and CRUD method names. Perhaps create Interface (this might be a to deep and unnecessary abstraction for the scope of this CMS) 
 
-4. Hide connectionstring, passwords (also in frontend) in environmental variables in the program. **High priority
+4. || Hide connectionstring, passwords (also in frontend) in environmental variables in the program. **High priority
 
 5. Lag et kall til login-siden slik at vi skaper et "dormancy-ping" for å kald-starte cms'et. (Dette kan fungere for appen også, kommenter til studentene)
 - Endre passord og brukernavn til login (lag 2 logins?) Dette må også gjemmes fra backend kontrolleren.
