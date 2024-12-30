@@ -66,7 +66,8 @@ const AddPlayer = ({ onPlayerAdded }) => {
             required
           />
         </div>
-        <button type="submit">Add Player</button>
+        <button className="add-player-button" type="submit">Add Player</button>
+
       </form>
       {message && <p>{message}</p>}
     </div>

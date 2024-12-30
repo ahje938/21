@@ -48,7 +48,8 @@ const PlayerList = () => {
             .map((player) => (
               <li key={player.id}>
                 {player.userName}
-                <button onClick={() => handleDelete(player.id)}>Delete</button>
+                <button className="delete-player-button" onClick={() => handleDelete(player.id)}>Delete</button>
+
               </li>
             ))}
         </ul>
