@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { deletePlayer, getPlayers } from "../services/PlayerService";
 import AddPlayer from "./AddPlayer";
+import "./../css/PlayerList.css";
 
 const PlayerList = () => {
   const [players, setPlayers] = useState([]);
@@ -35,7 +36,7 @@ const PlayerList = () => {
   };
 
   return (
-    <div className="player-list">
+    <div className="player-list-container">
       <h2>Player List</h2>
       <AddPlayer onPlayerAdded={handlePlayerAdded} />
       {!players || players.length === 0 ? (
