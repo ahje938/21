@@ -1,5 +1,7 @@
+// src/components/PlayerList.js
+
 import React, { useState, useEffect } from "react";
-import { deletePlayer, getPlayers } from "../services/PlayerService";
+import { deletePlayer, getPlayers } from "../services/PlayerService"; // Updated import
 import AddPlayer from "./AddPlayer";
 
 const PlayerList = () => {
@@ -7,26 +9,26 @@ const PlayerList = () => {
 
   useEffect(() => {
     const fetchPlayers = async () => {
-      const playersData = await getPlayers();
+      const playersData = await getPlayers(); // Use the updated getPlayers function
 
-      // Add the check for the $values property
-      const playerArray = playersData.$values || playersData;  // Check if data is wrapped in $values
+      // Check if data is wrapped in $values and unwrap it
+      const playerArray = playersData.$values || playersData; // Unwrap if $values exists
 
-      setPlayers(playerArray);  // Set the players state with the unwrapped data
+      setPlayers(playerArray);  // Set players state with the fetched data
     };
 
     fetchPlayers();
   }, []);
 
   const handleDelete = async (playerId) => {
-    const isDeleted = await deletePlayer(playerId);
+    const isDeleted = await deletePlayer(playerId); // Use the updated deletePlayer function
     if (isDeleted) {
-      setPlayers(players.filter((player) => player.id !== playerId));
+      setPlayers(players.filter((player) => player.id !== playerId)); // Update player list after deletion
     }
   };
 
   const handlePlayerAdded = (newPlayer) => {
-    setPlayers((prevPlayers) => [...prevPlayers, newPlayer]);
+    setPlayers((prevPlayers) => [...prevPlayers, newPlayer]); // Add new player to list after successful creation
   };
 
   return (
@@ -34,12 +36,12 @@ const PlayerList = () => {
       <h2>Player List</h2>
       <AddPlayer onPlayerAdded={handlePlayerAdded} />
       <ul>
-        {players && players.length > 0 ? (
+        {players.length > 0 ? (
           players
-            .sort((a, b) => a.username.localeCompare(b.username))
+            .sort((a, b) => a.userName.localeCompare(b.userName)) // Sort players by username
             .map((player) => (
               <li key={player.id}>
-                {player.username}
+                {player.userName}
                 <button onClick={() => handleDelete(player.id)}>Delete</button>
               </li>
             ))

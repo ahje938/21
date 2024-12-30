@@ -1,5 +1,7 @@
+// src/components/AddPlayer.js
+
 import React, { useState } from "react";
-import { createPlayer } from "../services/PlayerService"; 
+import { createPlayer } from "../services/PlayerService"; // Updated import
 import "./../css/AddPlayer.css";
 
 const AddPlayer = ({ onPlayerAdded }) => {
@@ -20,13 +22,12 @@ const AddPlayer = ({ onPlayerAdded }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const newPlayer = await createPlayer(formData);
+    const newPlayer = await createPlayer(formData); // Create player using the updated service
     if (newPlayer) {
       setMessage("Player added successfully!");
       setFormData({ userName: "", email: "", password: "" });
       onPlayerAdded(newPlayer); // Notify parent component to refresh list
     } else {
-      // Display a more detailed error message if available
       setMessage("Failed to add player. Please try again.");
     }
   };

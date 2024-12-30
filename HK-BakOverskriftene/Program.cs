@@ -11,8 +11,8 @@ internal class Program {
                 policy => policy
                     .AllowAnyOrigin()
                     .AllowAnyHeader()
-                    .AllowAnyMethod()
-                    .AllowCredentials());
+                    .AllowAnyMethod());
+
 
         });
 
