@@ -1,7 +1,5 @@
-// src/components/PlayerList.js
-
 import React, { useState, useEffect } from "react";
-import { deletePlayer, getPlayers } from "../services/PlayerService"; // Updated import
+import { deletePlayer, getPlayers } from "../services/PlayerService";
 import AddPlayer from "./AddPlayer";
 
 const PlayerList = () => {
@@ -9,46 +7,51 @@ const PlayerList = () => {
 
   useEffect(() => {
     const fetchPlayers = async () => {
-      const playersData = await getPlayers(); // Use the updated getPlayers function
-
-      // Check if data is wrapped in $values and unwrap it
-      const playerArray = playersData.$values || playersData; // Unwrap if $values exists
-
-      setPlayers(playerArray);  // Set players state with the fetched data
+      try {
+        const playersData = await getPlayers();
+        const playerArray = playersData?.$values || playersData || []; // Handle $values or undefined
+        setPlayers(playerArray);
+      } catch (error) {
+        console.error("Error fetching players:", error);
+      }
     };
 
     fetchPlayers();
   }, []);
 
   const handleDelete = async (playerId) => {
-    const isDeleted = await deletePlayer(playerId); // Use the updated deletePlayer function
-    if (isDeleted) {
-      setPlayers(players.filter((player) => player.id !== playerId)); // Update player list after deletion
+    try {
+      const isDeleted = await deletePlayer(playerId);
+      if (isDeleted) {
+        setPlayers((prevPlayers) => prevPlayers.filter((player) => player.id !== playerId));
+      }
+    } catch (error) {
+      console.error("Error deleting player:", error);
     }
   };
 
   const handlePlayerAdded = (newPlayer) => {
-    setPlayers((prevPlayers) => [...prevPlayers, newPlayer]); // Add new player to list after successful creation
+    setPlayers((prevPlayers) => [...prevPlayers, newPlayer]);
   };
 
   return (
     <div className="player-list">
       <h2>Player List</h2>
       <AddPlayer onPlayerAdded={handlePlayerAdded} />
-      <ul>
-        {players.length > 0 ? (
-          players
+      {!players || players.length === 0 ? (
+        <p>Loading or no players available.</p>
+      ) : (
+        <ul>
+          {players
             .sort((a, b) => a.userName.localeCompare(b.userName)) // Sort players by username
             .map((player) => (
               <li key={player.id}>
                 {player.userName}
                 <button onClick={() => handleDelete(player.id)}>Delete</button>
               </li>
-            ))
-        ) : (
-          <li>No players available.</li>
-        )}
-      </ul>
+            ))}
+        </ul>
+      )}
     </div>
   );
 };
