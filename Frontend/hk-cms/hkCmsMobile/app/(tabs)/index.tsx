@@ -1,11 +1,13 @@
 import { View } from 'react-native';
-
+import DoodlesBackgroundBlue from "../../components/doodlesbackgroundBlue";
 
 export default function ModulerScreen() {
   return (
-    <View>
-
-    </View>
+     <DoodlesBackgroundBlue>
+         <View>
+           
+         </View>
+       </DoodlesBackgroundBlue>
   );
 }
 

@@ -1,56 +1,61 @@
 import { useEffect } from "react";
-import { View, Image, Text, StyleSheet } from "react-native";
+import { View, Image, Text, StyleSheet, ActivityIndicator } from "react-native";
 import { useRouter } from "expo-router";
+import DoodlesBackgroundOrange from "../components/doodlesbackgroundOrange"; 
 
 export default function SplashScreen() {
   const router = useRouter();
 
   useEffect(() => {
     setTimeout(() => {
-      router.replace("/login"); 
+      router.replace("/login");
     }, 3000);
   }, []);
 
   return (
-    <View style={styles.container}>
-      {/* Main Image */}
+    <DoodlesBackgroundOrange>
+    
       <Image source={require("../assets/images/Vaerkritisk.png")} style={styles.logo} />
 
-      {/* Text */}
-      <Text>Et samarbeidsprosjekt mellom</Text>
+      
+      <Text style={styles.text}>Et samarbeidsprosjekt mellom</Text>
 
-      {/* Container for side-by-side images */}
+      
       <View style={styles.rowContainer}>
         <Image source={require("../assets/images/Kristiania.png")} style={styles.smallLogo} />
         <Image source={require("../assets/images/Oslomet.png")} style={styles.smallLogo} />
       </View>
-    </View>
+
+      
+    </DoodlesBackgroundOrange>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#fff",
-  },
   logo: {
     width: 250,  
     height: 250, 
     resizeMode: "contain",
     marginBottom: 20,
   },
+  text: {
+    fontSize: 16,
+    color: "#000",
+    marginBottom: 10,
+  },
   rowContainer: {
-    flexDirection: "row", // Aligns items horizontally
+    flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
     marginTop: 10,
   },
   smallLogo: {
-    width: 100,  // Adjust size as needed
-    height: 100, // Adjust size as needed
+    width: 80,  
+    height: 80,  
     resizeMode: "contain",
-    marginHorizontal: 10, // Space between images
+    marginHorizontal: 10,
+  },
+  loader: {
+    marginTop: 20,
   },
 });
