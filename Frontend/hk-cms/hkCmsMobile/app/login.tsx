@@ -62,7 +62,7 @@ export default function LoginScreen() {
             onPress={() => setSecureTextEntry(!secureTextEntry)}
             style={styles.eyeIcon}
           >
-            <Feather name={secureTextEntry ? "eye" : "eye-off"} size={20} color="gray" />
+            <Feather name={secureTextEntry ? "eye-off" : "eye"} size={20} color="gray" />
           </TouchableOpacity>
         </View>
 
