@@ -94,7 +94,7 @@ export default function LoginScreen() {
         </View>
 
         {/* Register Link */}
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => router.push("/registrering/lag-bruker")}>
           <Text style={styles.registerText}>
             Har du ikke bruker?{" "}
             <Text style={styles.registerLink}>Registrer deg her</Text>
