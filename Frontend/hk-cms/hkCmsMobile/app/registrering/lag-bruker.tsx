@@ -16,13 +16,14 @@ export default function RegisterScreen() {
   const [email, setEmail] = useState<string>("");
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const [progress, setProgress] = useState<number>(20); // Simulate progress (in percentage)
+  const [progress, setProgress] = useState<number>(60); // Simulate progress (in percentage)
   const [secureTextEntry, setSecureTextEntry] = useState(true);
 
   const handleRegister = () => {
     if (email && username && password) {
-      Alert.alert("Registration Successful", "You can now log in.");
-      router.replace("/(tabs)");
+      //Alert.alert("Registration Successful", "You can now log in.");
+      //router.replace("/(tabs)");
+      router.push("/registrering/velg-avatar");
     } else {
       Alert.alert("Registration Failed", "Please fill in all fields.");
     }
@@ -55,7 +56,7 @@ export default function RegisterScreen() {
         <TextInput
             value={email}
             onChangeText={setEmail}
-            placeholder="Enter email"
+            placeholder=""
             style={styles.inputField}
         />
 
@@ -63,7 +64,7 @@ export default function RegisterScreen() {
         <TextInput
             value={username}
             onChangeText={setUsername}
-            placeholder="Enter username"
+            placeholder=""
             style={styles.inputField}
         />
 
@@ -73,7 +74,7 @@ export default function RegisterScreen() {
                 value={password}
                 onChangeText={setPassword}
                 secureTextEntry={secureTextEntry}
-                placeholder="Enter password"
+                placeholder=""
                 style={styles.inputField}
             />
             <TouchableOpacity
@@ -92,9 +93,9 @@ export default function RegisterScreen() {
             <Text style={styles.cancelButtonText}>Avbryt</Text>
             </TouchableOpacity>
 
-            {/* Register Button */}
+            {/* Neste Button */}
             <TouchableOpacity style={styles.button} onPress={handleRegister}>
-            <Text style={styles.buttonText}>Registrer</Text>
+            <Text style={styles.buttonText}>Neste</Text>
             </TouchableOpacity>
         </View>
         </View>
