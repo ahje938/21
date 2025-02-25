@@ -4,7 +4,7 @@ import { View, ImageBackground, StyleSheet } from "react-native";
 export default function DoodlesBackgroundOrange({ children }) {
   return (
     <ImageBackground
-      source={require("../assets/images/Doodles1.png")} // Update path if needed
+      source={require("../assets/images/Doodles1.png")} // Update path if needed 
       style={styles.background}
     >
       <View style={styles.overlay}>{children}</View>
